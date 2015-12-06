@@ -1,0 +1,77 @@
+*{margin:0px;}
+body{background:#FBFBFB;z-index:10;}
+header{top:0px; background:white;}
+#logo{ width: 59px;display:inline-block;vertical-align:top;}
+h1{font-size: 35px;display:inline-block;
+  text-align: center;vertical-align:top;}
+h2,#save{display:inline-block;padding:5px;box-shadow:1px 1px 3px;cursor:pointer;font-size:70px; margin: 5px;}
+h2.actif{background:black;color:white;}
+#save{background:black;color:white;}
+h3{    font-size: 13px;cursor:pointer;
+    }
+		.boutons{background:white;}
+		.boutons span{padding:2px;}
+		.boutons .train{color:rgb(50,255,200);}
+		.boutons .cierto{color:rgb(0,255,50);}
+		
+	
+h3,article div{margin: 1px;width:110px;margin:0px 5px 0px 0px;text-align:center;display:inline-block;padding: 2px;}
+ h4{font-size:35px;    text-align: center;margin: 0px;
+    display: block;cursor:pointer;    display: inline-block;}	
+#choixclasse input{width: 36px;}	
+#alphabetix{cursor:pointer;}
+#alphabetix.actif,#alphabetix:hover{color:blue;}
+
+#choixclasse{display:inline-block;vertical-align:top;}	
+	
+#titres article{padding:0px;display:inline;margin:0px;margin-left: -20px;}
+
+#resultats{position:absolute;top:170px;}
+
+#resultats section{clear: both;
+box-shadow:1px 3px 5px;    box-shadow: 1px 3px 10px;border-bottom:1px solid grey;
+    margin-bottom: 14px;background:white;}
+	.lesitems div:nth-child(3n),#titres article h3:nth-child(3n){background:#EEEEEE;}
+	.lesitems div:nth-child(3n+1),#titres article h3:nth-child(3n+1){background:#E1DEFF;}
+.moygpe{background:#EEEEEE;}
+article section{display:inline-block;}
+article{margin:0px 10px 0px 100px;height:62px;    width: 2000px;}
+
+
+
+.awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
+
+#resultats span{margin:0px 1px 0px 0px;background:white;text-align:center;display: inline-block;
+    vertical-align: bottom;  width: 19px;
+    border: 1px solid #E4E4E4;
+    border-radius: 4px;}
+.groupe{display:inline-block;float:left;    width: 95px;}
+	.groupe button{     
+	margin: 1px 0px 1px 5px;
+    font-size: 23px;
+    height: 30px;
+    width: 90px;
+    display: block;}
+	.pts{display:block;float:left;}
+	
+	.nom{cursor:pointer;}
+	.level{float:left;}
+.level[data-level="actif"]{background:#DFC1FF;}
+#resultats .nom .rsltinst{    display: block;font-size: 11px;
+    width: 100%;}
+	
+
+	
+#date,.date{width:30px;cursor:pointer;}
+	.date.actif{    border: 5px solid #F78902;
+    box-shadow: 0px 0px 25px #F78902;}
+	
+#popup{position: fixed;
+    display: none;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    height: 500px;
+    top: 0px;
+    z-index: 30;
+}
+#popup #contenu{position:fixed;top:100px;left:10%;width:80%;z-index:35;}

@@ -1,0 +1,127 @@
+<?php session_start();?>
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+   <meta http-equiv="Content-Type" content="text/HTML; charset=ANSI_ç" />
+	<link rel="shortcut icon" href="../commun/img/logomini.png" type="image/x-icon"/> 
+	<title>Mini-Maestria</title>
+	<meta name="description" content="Découverte problème scolaires"/>
+	<meta name="keywords" content="métaphysik,pourquoi, comment,physique,chimie, Paris,évaluation automatique,cours,exercices,animations pour apprendre" />
+	
+	
+	<link href="../manuel/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	
+	
+	<link rel="stylesheet" title="style_commun" media="screen" type="text/css" href="newuser.css"/>
+
+	
+	<link  href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+	<link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">	
+
+</head> 
+<body>
+
+<img src="../commun/img/maestria.png" alt="logo maestria" id="logo"/><h1>Obtenir un code Metaphysik</h1>
+<form>
+		<article class='niveau'>
+			<select>
+				<option id="n8">Niveau actuel</sup></option>
+				<option id="n5">5<sup>ème</sup></option>
+				<option id="n4">4<sup>ème</sup></option>
+				<option id="n3">3<sup>ème</sup></option>
+				<option id="n2" selected>2<sup>nde</sup></option>
+				<option id="n7">1<sup>ère</sup>S</option>
+				<option id="n1">1<sup>ère</sup>ES ou L</option>
+			</select>
+		</article>
+		<article class='nom'>	
+			 <input id="nom" type="text" placeholder="Nom ou pseudonyme" >
+		</article>	 
+		<article class='mail'>
+			 <input id="mail" type="text" placeholder="Adresse mail" >
+		</article>
+		<article class='antibot'>	
+			 <label for="antibot">Si on rédige 3 questions ayant chacune 4 réponses, combien cela fait-il de réponses en tout?</label> 
+			 <input id="antibot" name="antibot" type="text" placeholder="Ecris juste un chiffre" >
+			 
+		</article>	
+		<h4 id="valid">Valider</h4>
+</form>		
+<section id="erreur">
+	<article class='niveau'></article>
+	<article class='nom'></article>
+	<article class='mail'></article>
+	<article class='antibot'></article>
+</section>	
+<section id='resultat'></section>
+ <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script>
+//Restafaire
+//validations items à la volée
+classes={'2<sup>nde</sup>10':'210','1<sup>ES/L</sup>':'1'}
+
+$(document).on('ready',function(){
+$('#valid').on('click','', function(){	
+erreur=false;$('#erreur article').html('');
+	
+	niveau=$('select option:selected').attr('id').substring(1,2);
+	if(niveau=='8'){$('#erreur .niveau').html('Choisis un niveau');erreur=true;}
+	
+	nom=escapeHtml($('#nom').val());
+	if(nom==''){$('#erreur .nom').html('Choisis un nom ou un pseudonyme');erreur=true;}
+	
+	mail=escapeHtml($('#mail').val());//(regexp mail)
+	if((mail=='')||(!validateEmail(mail))){$('#erreur .mail').html('Donne une adresse mail valide si tu veux pouvoir recevoir ton code');erreur=true;}
+	
+	antibot=escapeHtml($('#antibot').val());//(regexp mail)
+	if(antibot!='12'){$('#erreur .antibot').html('Si tu ne réponds pas correctement à la question, je vais croire que tu es un robot!');
+	erreur=true;}
+	
+	
+	if(!erreur){
+		donnees={"niveau":niveau,"nom":nom,"mail":mail};
+			console.log(donnees);
+				$.ajax({
+					url:"newuser_mail.php",
+					data: donnees,
+					dataType : 'html',
+					type : 'GET', 
+					error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
+					success:function(data) {console.log(data);
+						datas=JSON.parse(data);console.log(datas);
+						
+						if(datas['mail']==false){
+							html="Félicitations "+nom+", te voilà pourvu d'un code Metaphysik qui vient d'être envoyé dans ta boîte mail préférée. Va le récupérer pour pouvoir jouer.";
+						}
+						else{
+							html="Hé bien "+nom+", il doit y avoir un malentendu, ce mail a déjà été utilisé. Le code généré vient de t'être renvoyé à cette adresse. Tu aurais peut-être pu te souvenir que ton code est le <b>"+datas['nouveau']+" </b><a href='http://metaphysik.fr/tutorat/eval.php'>Tu peux aller t'évaluer maintenant!</a>";
+						}
+						$('#resultat').html(html);
+						
+					}						
+				});  	
+	
+	$('#erreur').html(erreur);
+	
+	
+	
+	
+	}
+	
+});
+
+});
+function escapeHtml(text) { 
+	var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }; 
+	return text.replace(/[&<>"']/g, function(m) {
+		return map[m]; }); 
+}
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+</script>
+</body>
+</html>
