@@ -1,0 +1,606 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta http-equiv="Content-Type" content="text/HTML; charset=UTF-8" />
+	<link rel="shortcut icon" href="img/minilogo.png" type="image/x-icon"/> 
+	<title>Plantator v4</title>
+	<meta name="description" content="Organisation potagère open-source, Banque de données colaborative sur les plantes "/>
+	<meta name="keywords" content="légume, permaculture, plante, jardin,potager,rotation,culture,semis,récolte" />
+	
+	<link rel="stylesheet" title="style_commun" media="screen" type="text/css" href="plantator4.css"/>
+
+	
+	<link  href='http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
+	<link href="../commun/font-awesome/css/font-awesome.min.css" rel="stylesheet">	
+
+</head> 
+
+<body>
+<header>
+	<img src="img/images.png" id="logo" alt="logo du plantator">
+	<span id="mois"><h5 class="hiver">J</h5><h5 class="hiver">F</h5><h5>M</h5><h5 class="ptps">A</h5><h5 class="ptps">M</h5><h5>J</h5><h5 class="ete">J</h5><h5 class="ete">A</h5><h5>S</h5><h5 class="automn">O</h5><h5 class="automn">N</h5><h5>D</h5></span>
+	<div id="titres">
+		<h5 id="caract">
+			<li>durée de vie</li>
+			<!--<li>vivace</li>-->
+			<li>hauteur</li>
+			<li>largeur</li>
+		</h5><h5 id="semis">
+			<li>Multiplication</li>
+			<li>profondeur</li>
+			<li>espacement</li>
+		</h5><h5 id="emplacement">
+			<li>soleil</li>
+			<li>sol</li>
+			<li>température</li>
+		</h5>
+		</h5><h5 id="multi">
+			<li>nutriments</li>
+			<li>compagne</li>
+			<li>antipathique</li>
+		</h5>
+		</h5><h5 id="comentaire">
+			<li>pH</li>
+			<li>type de racine</li>
+			<li>commentaire</li>
+		</h5>
+		<span id="aide">Aide</span></div>
+</header>
+<section id="comment"></section>
+<section id="planches">
+	
+		<section id="catalogue">
+		
+</section>
+<footer>Pour toute suggestion d'amélioration, -><a style='color:cyan' href='http://metaphysik.fr/manuel/projet.php#contact'>Contact</a><a href="https://docs.google.com/spreadsheets/d/16lEHNGDrBh-YhYjX1_25CwJuf_Qkn7bueKuizrN7Cag/edit#gid=1960947943">données sur tableur</a> <a href="http://padlet.com/adressedallan/w54pkq3y9p75">ressources supplémentaires</a></footer>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script>
+
+//Modifiable par tous, j'actualiserai régulièrement le fichier excel pour que tout un chacun puisse avoir les données. Si vous connaissez des développeur Web motivé pour m'aider, faites moi signe!
+//Ca y est, il est arrivé! Amis gastronomes, jardiniers, herboristes et autres, vous avez un nouvel ami: le plantator! 
+//http://metaphysik.fr/projet/Plantator4.html
+if (typeof Object.create != 'function') {
+  // Production steps of ECMA-262, Edition 5, 15.2.3.5
+  // Reference: http://es5.github.io/#x15.2.3.5
+  Object.create = (function() {
+    // To save on memory, use a shared constructor
+    function Temp() {}
+
+    // make a safe reference to Object.prototype.hasOwnProperty
+    var hasOwn = Object.prototype.hasOwnProperty;
+
+    return function (O) {
+      // 1. If Type(O) is not Object or Null throw a TypeError exception.
+      if (typeof O != 'object') {
+        throw TypeError('Object prototype may only be an Object or null');
+      }
+
+      // 2. Let obj be the result of creating a new object as if by the
+      //    expression new Object() where Object is the standard built-in
+      //    constructor with that name
+      // 3. Set the [[Prototype]] internal property of obj to O.
+      Temp.prototype = O;
+      var obj = new Temp();
+      Temp.prototype = null; // Let's not keep a stray reference to O...
+
+      // 4. If the argument Properties is present and not undefined, add
+      //    own properties to obj as if by calling the standard built-in
+      //    function Object.defineProperties with arguments obj and
+      //    Properties.
+      if (arguments.length > 1) {
+        // Object.defineProperties does ToObject on its first argument.
+        var Properties = Object(arguments[1]);
+        for (var prop in Properties) {
+          if (hasOwn.call(Properties, prop)) {
+            obj[prop] = Properties[prop];
+          }
+        }
+      }
+
+      // 5. Return obj
+      return obj;
+    };
+  })();
+}
+lg=40;keysSorted='';//largeur d'un mois
+
+
+pictos={
+	association:{
+		imgpro:'&#xf164;',
+		imganti:'&#xf165;'
+	},
+	eau:{
+		img:'&#xf043;'
+	},
+	edition:'&#xf044;',
+	hauteur:{
+		img:'&#xf07d;'
+	},
+	largeur:{
+		img:'&#xf07e;'
+	},
+	pH:{
+		couleur:["",'red','green','blue'],
+		title:["",'pH acide','pH neutre','pH basique']
+	},
+	profondeur:{
+		img:'&#xf175;'
+	},
+	racine:{
+		nom:["",'pivotante','traçante','fasciculée'],
+		img:["",'I','L','X']
+	},
+	eau:{
+		img:'&#xf1b3;',
+		couleur:["",'#FF0000','brown','#D00404'],
+		title:["",'sableux/léger','équilibré','argileux/lourd']
+	},
+	soleil:{
+		img:["",'&#xf185;','&#xf185;/&#xf0c2;','&#xf0c2;'],
+		title:["",'ensoleillé','mi-ombre','ombre']
+	},
+	solriche:{
+		title:["",'Besoins en nutriments faibles','Besoins en nutriments moyens','Besoins en nutriments élevés'],
+		img:['','&#xf006;','&#xf123;','&#xf005;']
+		
+	},
+	type:{
+		feuille:'&#xf06c;',
+		fruit:'&#xf094;',
+		racine:'&radic;',
+		fleur:'&#xf1e9;'
+	},
+	vivace:{
+		img:'&#xf0e2;'		
+	}
+};
+//froid<span class="awsm">&#xf069;</span>
+
+criteretri={
+	'caract':{'vivace':'caractère vivace',
+			'famille':'famille',
+			'hauteur':'hauteur'},
+	'emplacement':{'soleil':'ensoleillement',
+					'eau':'composition du sol'},
+	'multi':{'solriche':'fertilité du sol'},
+	'comentaire':{'pH':'pH'}	
+	
+};
+
+champs={
+	nom:{descr:'Nom',type:'text',clr:'white',img:''},
+	famille: {descr:'famille',type:'text',clr:'white',img:'' } ,
+	 semisint: {descr:'Mois de semis en intérieur',type:'mois',clr:'#3EF53E',img:''} ,
+	 semisabri: {descr:'Mois de semis sous abri' ,type:'mois',clr:'#3EF53E',img:''}, 
+	 semisext: {descr:'Mois de semis en extérieur',type:'mois',clr:'#3EF53E',img:''} ,
+	 recolteDeb: {descr:'Mois de début de la récolte',type:'mois',clr:'#00C2FF',img:'' } ,
+	 recolteFin: {descr:'Mois de fin de la récolte' ,type:'mois',clr:'#00C2FF',img:''  },
+	 soleil: {descr:'Ombre nécessaire',type:'ch3',clr:'#E8ADAD',img:'&#xf185;/&#xf0c2;'  } ,
+	 pH: {descr:'Acidité nécessaire?',type:'ch3',clr:'#E8ADAD',img:'pH '   } ,
+	 eau: {descr:'Sol lourd? (pas du tout= sol léger)',type:'ch3',clr:'#E8ADAD',img:'&#xf1b3;'   } ,
+	 solriche: {descr:'Besoins en nutriments de la plante' ,type:'ch3',clr:'#E8ADAD',img:'&#xf123;'   },
+	 vie: {descr:'Durée de vie de la plante en années',type:'nb' ,clr:'#FFA500',img:''  },
+	 hauteur: {descr:'Hauteur de la plante(cm)',type: 'cm',clr:'#FFA500',img:'&#xf07d;'  } ,
+	 largeur: {descr:'largeur de la plante(cm)',type:'cm',clr:'#FFA500',img:'&#xf07e;'   },
+	 racine: {descr:'Type de racine',type:'racine',clr:'#FFA500',img:''   } ,
+	  rendement: {descr:'Nombre de kg/m² lors de la récolte',type:'nb',clr:'#FFA500',img:''   } ,
+	 multi: {descr:'Méthode de multiplication',type:'text',clr:'#FFA500',img:''   } ,
+	 Tmin: {descr:'Température minimum',type:'nb',clr:'#FFA500',img:''   } ,
+	 vivace: {descr:'Caractère vivace?',type:'bool',clr:'#FFA500',img:'&#xf0e2'   } ,
+	 tpslevee: {descr:'Nombre de jours de la graine à la plantule',type:'nb',clr:'#D8D5D5',img:'' } ,
+	  prof:{descr:'profondeur du semis(cm)',type:'cm',clr:'#D8D5D5',img:'&#xf175;'} ,
+	 dligne: {descr:'espacement entre chaque ligne(cm)',type:'cm',clr:'#D8D5D5',img:'' } ,
+	 drang: {descr:'espacement dans le rang(cm)',type:'cm',clr:'#D8D5D5',img:''} , 
+	 repiq: {descr:'Mois de repiquage',type:'mois',clr:'#D8D5D5',img:''} ,
+	
+	 tpsconserv: {descr:'Durée de conservation des semences (années)',type:'nb',clr:'#D8D5D5',img:'' } ,
+	 utilisation: {descr:'Autres utilisation de la plante',type:'text',clr:'#54CEAD',img:'' } ,
+	 commentaire: {descr:'Commentaire',type:'text',clr:'#54CEAD',img:'' } ,
+	 conservalimt: {descr:"Durée de conservation de l'aliment(en jours)",type:'nb',clr:'#54CEAD',img:'' },
+	 // mail: {descr:"Adresse mail accusé de réception désiré",type:'text' },
+	  type: {descr:'partie comestible de la plante',type:'typlant',clr:'#FFA500',img:''},
+	 associe: {descr:'plantes associées',type:'plantes',clr:'#E8ADAD',img:'&#xf164;'  } ,
+	 antiassocie: {descr:'association néfaste',type:'plantes',clr:'#E8ADAD',img:'&#xf165;'  } 
+};
+
+nvlentree='<h6><span>Nouvelle plante </span><span class="famille">Inconnue</span></h6><div><span class="awsm edit" id="NULL" style="margin-left: 200px;">'+pictos.edition+'</span></div>';
+
+var plante={};tab={table:'plante2'};
+$.ajax({
+		url:"http://metaphysik.fr/projet/plantator2.php",
+		data: tab,
+		dataType : 'html',
+		type : 'GET', 
+		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
+		success:function(data){//console.log(data);
+			plante=JSON.parse(data);
+			for(var j in plante){
+				plante[j]['visible']=1;
+			}
+			
+			keysSorted = clefsordonnees('nom');
+			//Object.keys(plante).sort(function(a,b){return plante[a]['nom'].toLowerCase().localeCompare(plante[b]['nom'].toLowerCase())});
+			
+			plantedsplanche();//console.log(plante);
+		}
+	});				
+
+aide();	
+
+	
+$('#logo').on('click', function(){
+	for(var j in plante){
+				plante[j]['visible']=1;
+			}
+	plantedsplanche();
+	$('#mois h5').removeClass('trisemis').removeClass('trirec');
+	$('body').removeClass('actif');
+});	
+	
+$('body').on('click','h6', function(){
+	affchbulle($(this).html(),$(this),'nom');
+});
+
+$('body').on('click','#catalogue article div,#catalogue article span', function(){
+	infob=$(this).attr('title');//console.log(infob);
+	if(infob!=undefined)affchbulle(infob,$(this),'def');
+});
+
+$('body').on('click','#aide', function(){
+	aide();
+});
+$('body').on('click','#close', function(){
+	$('#comment').empty();
+});
+
+$('#mois h5').on('click', function(){
+	moischoisi=($('#mois h5').index($(this))+1);
+	contenu='<span id="onlysemis">Semis</span><span id="onlyrecolte">Récolte</span>';
+	affchbulle(contenu,$(this),'titre');
+});
+
+$('#comment').on('click','#onlysemis', function(){
+	for(var j in plante){
+		if(plante[j].visible){
+			semis=parseInt( (plante[j].semisext!=0)?plante[j].semisext:plante[j].semisabri );
+			semis=parseInt((semis==0)?plante[j].semisint:semis );//console.log(semis);
+			plante[j].visible=((semis<(moischoisi+1))&&(semis>(moischoisi-2)))?1:0;//console.log(plante.nom+''+plante.visible)	;
+		}
+	}
+plantedsplanche();	
+$('#comment').empty();$('#mois h5').eq(moischoisi-1).removeClass('actif').addClass('trisemis');	
+});
+
+$('#comment').on('click','#onlyrecolte', function(){
+	for(var j in plante){
+		if(plante[j].visible){
+			deb=plante[j].recolteDeb;fin=plante[j].recolteFin;
+			plante[j].visible=(((fin-deb>0)&&(deb<=moischoisi)&&(fin>=moischoisi))||((fin-deb<0)&&((fin>=moischoisi)||(deb<=moischoisi))))?1:0;			
+		}
+	}
+	plantedsplanche();	
+$('#comment').empty();$('h5').eq(moischoisi-1).removeClass('actif').addClass('trirec');
+});
+
+$('#titres h5').on('click', function(){
+	contenu='';
+	
+	for(l in  criteretri[$(this).attr('id')]){
+		contenu+='<span data-type="'+$(this).attr('id')+'-'+l+'" class="tri">Tri par '+criteretri[$(this).attr('id')][l]+'</span>';
+	}
+	affchbulle(contenu,$(this),'titre');
+});
+
+$('body').on('click','.tri', function(){
+	
+	crit=$(this).data('type').split('-');console.log(crit);
+	
+	if(crit[1]=='famille')keysSorted=clefsordonnees(crit[1]);
+	else keysSorted=clefsordonneesnbr(crit[1]);
+		
+	$('#comment').empty();
+	affchbulle(criteretri[crit[0]][crit[1]],$('#'+crit[0]),'titre');
+	plantedsplanche();
+});
+
+function aide(){
+contenu="<h1>Bienvenue sur le plantator!</h1>Tu peux obtenir des informations en cliquant sur ce que tu ne comprends pas. Tu peux aussi rajouter des infos pour faire plaisir aux suivants!<br/>Dans le plantator, tout est open-source et libre de droit! Si tu es motivé pour aider à la programmation (par exemple pour le graphisme ou l'optimisation mobile), <a style='color:cyan' href='http://metaphysik.fr/manuel/projet.php#contact'>contacte-moi</a><br/>Tu peux compléter les infos manquantes grâce au bouton <span class='awsm edit' style='display:inline'>'"+pictos.edition+"'</span> Pour la recherche d'un nom particulier tape Control+F (sous Windows) ou Cmd+F (sous Mac)";
+affchbulle(contenu,$('#logo'),'titre')
+
+}
+
+function affchbulle(contenu,obj,type){
+	$('.actif').removeClass('actif');
+	obj.addClass('actif');
+	x=obj.offset().left;
+	if(type=='titre'){
+	content='<div style="left:'+x+'px;top:59px;position:fixed">'+contenu+'<span id="close">X</span></div>';
+	}
+	else{
+	y=obj.offset().top;//console.log(x+','+y);
+	content='<div style="left:'+x+'px;top:'+(y+40)+'px">'+contenu
+	+'<span id="close">X</span></div>';}
+	$('#comment').html(content);
+}
+	
+
+mois={0:'Choisir',1:"Janvier",2:"Février", 3:"Mars",4:"Avril",5:"Mai",6:"Juin",7:"Juillet",8:"Août",9:"Septembre",10:"Octobre",11:"Novembre",12:"Décembre"};
+ch3={0:'Choisir',1:'Pas du tout',2:'Moyen',3:'Beaucoup'};
+bool={0:'Non',1:'Oui'};
+typlant={'feuille':'feuille','fruit':'fruit','fleur':'fleur','racine':'racine'};
+$('body').on('click','.edit', function(){
+	if($(this).attr('ID')=='NULL'){
+		for(var j in plante['1']){
+			p[j]="";
+		}
+	}
+	else p=plante[$(this).attr('id')];
+	
+	html="";
+	for(var c in champs){
+		html+='<div class="'+champs[c]['type']+'" style="background:'+champs[c]['clr']+'" id="'+c+'"><span class="awsm">'+champs[c]['img']+'</span>'+champs[c]['descr'];
+		switch(champs[c]['type']){
+			case 'mois':
+				html+='<select name="'+c+'">';
+				for(var m in mois){
+					html+='<option value="'+m+'"';
+					if(p[c]==m)html+=' selected="selected"';	
+					html+='>'+mois[m]+'</option>';
+				}
+				html+='</select>'; 
+			break;
+			
+			case 'ch3':
+			html+='<select name="'+c+'">';
+				for(var i in ch3){
+					html+='<option value="'+i+'"';
+					if(p[c]==i)html+=' selected="selected"';	
+					html+='>'+ch3[i]+'</option>';
+				}
+				html+='</select>'; 
+			break;
+			
+			case 'bool':
+			html+='<select name="'+c+'">';
+				for(var i in bool){
+					html+='<option value="'+i+'"';
+					if(p[c]==i)html+=' selected="selected"';	
+					html+='>'+bool[i]+'</option>';
+				}
+				html+='</select>'; 
+			break;
+			
+			case 'racine':
+			html+='<select name="'+c+'">';
+				for(var i in pictos.racine.nom){
+					html+='<option value="'+i+'"';
+					if(p[c]==i)html+=' selected="selected"';	
+					html+='>'+pictos.racine.nom[i]+'</option>';
+				}
+				html+='</select>'; 
+			break;
+			
+			case 'typlant':
+			typesss=p[c].split('_');
+			for(var i in typlant){
+					html+='</br><input class="chk" type="checkbox" name="'+c+'" value="'+i+'"';
+					if($.inArray(typlant[i],typesss)!=-1)html+=' checked';	
+					html+='>'+i+'';
+				}
+			break;
+			
+			case 'plantes':
+			autresplantes=p[c].split('_');
+			html+='<br><img class="deroul" src="../commun/img/plusspetit.png"><div class="tiroir">';
+			for(k in keysSorted){
+					html+='<label><input class="chk" type="checkbox" name="'+c+'" value="'+plante[keysSorted[k]].ID+'"';
+					if($.inArray(plante[keysSorted[k]].ID,autresplantes)!=-1)html+=' checked';	
+					html+='>'+plante[keysSorted[k]].nom+'</label>';
+				}
+			html+='</div>';	
+			break;
+			
+			default:
+			html+='<input type="text" name="'+c+'" placeholder="'+champs[c]['descr']+'" value="'+p[c]+'">';
+			break;
+			
+		}
+		html+='</div>';
+	}
+	html+='<button id="envoi">Envoyer</button>';
+	$('#catalogue').empty(),
+	($(this).parent().parent('article').empty().css('height','initial').css('padding-bottom','50px').css('top','80px').addClass('modedition').append(html)).appendTo('#catalogue');
+});
+$('body').on('click','.deroul', function(){
+	$(this).toggleClass('plus').next('.tiroir').slideToggle();
+});
+
+
+$('body').on('click','#envoi', function(){
+infos={ID:$(this).parent('article').data('id')};
+	$(this).parent('article').find('div:not(.tiroir)').each(function (){
+		key=$(this).attr('id');value="";
+		switch($(this).attr('class')){
+			case 'mois':
+			value=$(this).find('select option:selected').attr('value');
+			break;
+			case 'ch3':
+			value=$(this).find('select option:selected').attr('value');
+			break;
+			case 'bool':
+			value=$(this).find('select option:selected').attr('value');
+			break;
+			case 'typlant':
+				$(this).find('input:checked').each(function(index){
+				value+=$(this).attr('value')+'_';
+				});
+			break;
+			case 'racine':
+			value=$(this).find('select option:selected').attr('value');
+			break;
+			case 'plantes':
+				$(this).find('input:checked').each(function(index){
+				value+=$(this).attr('value')+'_';
+				});
+			break;
+			default:
+			value=$(this).find('input').val();
+			break;
+		}
+		console.log(key+'->'+value);
+		//value=encodeURIComponent( escape(value));
+		console.log(value);
+		infos[key]=value;
+		//if(value==undefined||value==""){value="";
+	});
+console.log(infos);
+	$.ajax({
+		url:"http://metaphysik.fr/projet/plantatoredit.php",
+		data: infos,
+		dataType : 'html',
+		type : 'GET', 
+		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
+		success:function(data){console.log(data);
+			//plante=JSON.parse(data);
+			alert('Modification enregistrée,en attente de validation par un modérateur.');
+			plantedsplanche();//console.log(plante);
+		}
+	});		
+
+});
+
+function plantedsplanche(){
+i=-50;h=80;decalage=80;$('#catalogue').empty();
+
+	for(k in keysSorted){p=plante[keysSorted[k]];//console.log(p);
+		if(p.visible){
+		i=h+i;
+			//////nom et famille
+			
+			html='<article style="top:'+i+'px" data-ID="'+p.ID+'"><h6><span>'+ud(p.nom)+' </span><span class="famille">'+ud(p.famille)+'</span></h6>';
+			
+			////////croissance
+			semis=(p.semisext!=0)?p.semisext:p.semisabri;
+			semis=(semis==0)?p.semisint:semis;
+			croissance=	p.recolteDeb - semis;//console.log(p.nom+' '+croissance);
+			if(croissance>0){
+				html+='<div class="veg" style="width:'+croissance*lg+'px;left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></div>';}
+			else if(croissance<0) {
+				html+='<div class="veg" style="width:'+(13-semis)*lg+'px;left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></div>';
+				html+='<div class="veg" style="width:'+(p.recolteDeb-1)*lg+'px;left:'+decalage+'px;" title="période végétative/croissance"></div>';
+				}	
+				
+			////////récolte
+			recolteDuree=p.recolteFin-p.recolteDeb;	
+			if(recolteDuree>0){
+				html+='<div class="recolte" style="width:'+(recolteDuree+1)*lg+'px;left:'+((p.recolteDeb-1)*lg+decalage)+'px;" title="période de récolte"></div>';
+			}
+			else if(recolteDuree<0){
+				html+='<div class="recolte" style="width:'+(12-p.recolteDeb)*lg+'px;left:'+(p.recolteDeb*lg+decalage)+'px;" title="période de récolte"></div>';
+				html+='<div class="recolte" style="width:'+p.recolteFin*lg+'px;left:'+decalage+'px;" title="période de récolte"></div>';
+			}
+			html+='<div class="calendardeb"></div><div class="calendarfin"></div>';
+			///////////caractéristiques
+			html+='<div class="caract">';
+			htm="";
+			if(p.vie>0)htm='Vit '+p.vie+' an(s)';
+			if(p.vivace==1){
+			html+='<span class="awsm" style="color: #C1D6FF;" title="se comporte comme une vivace">'+htm+pictos.vivace.img+'</span>';
+			}
+			else{if(p.vie>0)html+='<span class="awsm">'+htm+'</span>';}
+			
+			if(p.hauteur>0)html+='<span class="awsm" title="hauteur de la plante">'+pictos.hauteur.img+p.hauteur+'cm</span>';
+			if(p.largeur>0)html+='<span class="awsm" title="largeur de la plante">'+pictos.largeur.img+p.largeur+'cm</span>';
+			
+			html+='</div>';
+			
+				////////////////////	
+			html+='<div class="semis">';
+				html+='<span title="méthode de multiplication">'+ud(p.multi)+'</span>';
+				if(p.prof>0)html+='<span class="awsm" title="profondeur de semis">'+pictos.profondeur.img+p.prof+'cm</span><br/>';
+				if(p.drang>0)html+='<span class="awsm" title="espacement dans le rang">'+pictos.largeur.img+p.drang+'cm</span>';
+			///////////////
+			html+='</div><div class="emplacement">';
+				
+				html+='<span class="awsm" title="emplacement '+pictos.soleil.title[p.soleil]+' ">'+pictos.soleil.img[p.soleil]+'</span>';
+				if((p.eau>0)&&(p.eau<4)){html+='<span class="awsm" title="substrat '+pictos.eau.title[p.eau]+'" style="color:'+pictos.eau.couleur[p.eau]+'">'+pictos.eau.img+'</span>';}
+				
+				html+='<span class="tmin" title="Température minimum supportée par la plante">'+ud(p.Tmin)+'°C</span></div><div class="compagnonage">';
+				html+='<span class="awsm" style="color:#00CC00" title="'+pictos.solriche.title[p.solriche]+'">'+pictos.solriche.img[p.solriche]+'</span>';
+				if(p.associe!=0){html+='<span class="awsm "  title="plantes compagnes: ';
+				pro=p.associe.split('_');
+				for(var n in pro){
+					html+=(parseInt(pro[n]))?' '+plante[parseInt(pro[n])].nom+',':'';//console.log(plante[parseInt(pro[n])].nom);
+					}
+				html+='">'+pictos.association.imgpro+'</span>';}
+				if(p.antiassocie!=0){
+					html+='<span class="awsm" title="association déconseillée: ';
+					anti=p.antiassocie.split('_');
+				for(var n in anti){
+					html+=(parseInt(anti[n]))?' '+plante[parseInt(anti[n])].nom+',':'';}
+				html+='">'+pictos.association.imganti+'</span>';}
+				
+			
+		
+				
+			html+='</div>';
+			
+			///////
+			if(p.type!=''){
+				html+='<div class="awsm type" title="Les ';
+				html2="";
+				types=p.type.split("_");
+				for(var k in types){
+					if(types[k]!=""){
+						html2+=pictos.type[types[k]];
+						html+=types[k]+'s ,';
+					}
+				}
+				html+='sont comestibles">'+html2+'</div>';
+			}
+			
+			////////////autres
+			
+			html+='<div class="autre">';
+			if((p.pH>0)&&(p.pH<4))html+='<span title="'+pictos.pH.title[p.pH]+'" style="color:'+pictos.pH.couleur[p.pH]+'">pH</span>';
+			html+='<span class="racine" title="La racine est '+pictos.racine.nom[p.racine]+'">'+pictos.racine.img[p.racine]+'</span>';
+			html+='<span>'+ud(p.commentaire)+'</span><span class="awsm edit" id="'+p.ID+'">'+pictos.edition+'</span></div></article>';
+			
+			
+			$('#catalogue').append(html);
+		}	
+	}
+	$('#catalogue').append('<article data-ID="NULL" style="top:'+(i+h)+'px;">'+nvlentree+'</article>');
+$("html").animate({ scrollTop: 0 }, "slow");
+}
+
+function clefsordonnees(critere){
+	return 	Object.keys(plante).sort(function(a,b){
+		return plante[a][critere].toLowerCase().localeCompare(plante[b][critere].toLowerCase())
+	});
+}
+function clefsordonneesnbr(critere){
+	return 	Object.keys(plante).sort(function(a,b){
+		return plante[a][critere]-plante[b][critere]
+	});
+}
+
+function ud(s){
+	s=(s=='undefined')?'':s;
+	return s;
+}
+
+<!-- Google analytics -->
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-31682286-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+</body></html>

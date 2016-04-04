@@ -1,0 +1,147 @@
+#main{margin-left:330px;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;background: white;}
+#main.plein{margin: 0px 1%;}
+#main section{clear:both;padding:1% 1%;}
+#main #displayed{font-size: 16px;float:right;padding: 0px 0px 0px 6px;margin: -6px 0px;background:white;font-family:Arial;}
+#displayed span{display:inline-block;background:white ;cursor: pointer;padding:6px 12px;width: 75px;color:#999999;
+				text-align: center;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}
+#displayed span.actif{background:#6D727C;color:#FFFFFF;}
+#displayed span:hover{opacity:0.6;}
+
+
+
+h1{font-size: 30px;background:#00A5D4;color:white;padding: 6px 0px;font-family:"Passion One";font-weight:normal;padding-left:10px;}
+h2{font-size: 24px;color:#00A5D4;margin-top: 15px;font-family:"Passion One";font-weight:normal;}
+h3{font-size: 18px;background:#00A5D4;color:white;padding:5px;	}
+#main:not(.exercifiant) a,#main h5,#slider a{background: #2B2F3A;display: inline-block;padding: 1px;color: white;margin: 5px;vertical-align: top;border:6px solid #2B2F3A;}
+#main:not(.exercifiant) a{font-size: 12px;}
+#main:not(.exercifiant) a:hover{color:#00A5D4;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;}
+#main h5.actif{color:#00A5D4;}
+h4{color:lightgrey;}
+
+h5{cursor:pointer;}
+
+
+h6{font-size: 18px;font-weight:bold;}
+
+
+#main img:not([src*="../commun/img"]){float: right;cursor:pointer;
+width:20%;
+box-shadow: 3px 3px 6px;
+border: 1px solid rgba(255, 255, 255,0.8);
+border-radius: 5px;
+margin: 2px;clear:both;}
+
+.crs{color:#03013B;margin:4px 0px;width:78%;text-align: justify;}
+strong{color:#00A5D4;}
+em{color: black;display:block;}
+
+		 a[href$=".swf"]:after {padding: 0px 4px;content:url("../commun/img/flash.jpg");}
+		a[href*="youtube.com"]:after {padding: 0px 4px;content:url("../commun/img/youtube.png");}
+		a[href*="physiquecollege.free.fr/"]:after {padding: 0px 4px;content:url("../commun/img/pccl.gif");}
+		a[href*="ostralo.net"]:after {padding: 0px 4px;content:url("../commun/img/ostralo.ico");}
+		a[href*="dailymotion"]:after {padding: 0px 4px;content:url("../commun/img/daily.jpg");}
+		a[href*="ed.ted.com"]:after {padding: 0px 4px;content:url("../commun/img/ted-logo.png");}
+		#main a[href*="metaphysik.fr"]:after {padding: 0px 4px;content:url("../commun/img/logomini.png");}
+		a[href$=".jnlp"]:after {padding: 0px 4px;content:url("../commun/img/download.png");}
+@font-face {
+    font-family: 'geek';
+    src: url('../commun/font/aten-webfont.eot');
+    src: url('../commun/font/aten-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../commun/font/aten-webfont.woff') format('woff'),
+         url('../commun/font/aten-webfont.ttf') format('truetype'),
+         url('../commun/font/aten-webfont.svg#atenenormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+	.grec{font-family:'geek';}	
+	
+	dl{width: 70%;background: rgb(255, 194, 105);padding: 6px;color:white;}
+	dt{	font-size: 18px;font-weight:bold;}
+	dt:before {content:url("../commun/img/info.png");}
+	dd{margin-left: 16px;}
+			
+	q{font-family: fantasy;display:block;margin:5px 0px 0px 0px;
+	text-align:center;}
+			cite{display:block;margin-left:80px;text-align:center;}
+		   .frac{position: relative;top: -0.5em;
+		   display:inline-block;min-height:2.5em;}
+		.num{border-bottom:1px solid;text-align: center;
+			display: inline-block;min-width:30px;}
+		.den{position:relative;top:1.5em;left:-50%;display: inline-block;min-width: 30px;text-align: center;}
+		table{border-collapse: collapse; }
+		td{ border: 1px solid black;}
+	
+/********************************* Mise en page exos */
+.details{display:none;}
+.indics{height:17px;}
+.exos div{display:none;}
+
+
+
+
+.exercifiant{border:1px solid black;clear:both;}
+
+.exercifiant p{width:100%;}
+.exercifiant div,.projets div {display:none;}
+.exercifiant div div,.projets div div{display:block;}
+#main .exercifiant div div a{float:none;}
+.comp{display:none;vertical-align: middle;}
+.querep{counter-reset: numquestion;padding: 5px;min-width: 75%;}
+			.querep img{width:50%;}
+			.enc{border-radius:9px;}
+.que:before{ counter-increment: numquestion;
+			 content:counter(numquestion,lower-greek) ". ";
+				 }
+.que{text-indent:10px;margin:0.2%;cursor:pointer;display:block;}	
+.que:hover .cr{max-height:100px;}
+				
+.cr{display:block;font-style:italic;max-height:0px;overflow:hidden;
+	-webkit-transition:all 0.5s ease-in-out;-moz-transition: all 0.5s ease-in-out;}
+.rep{display:none;
+	color:#00A5D4;
+	font-weight:bold;
+	font-style: italic;
+			}
+	.pcd:not(img){ background: rgb(205, 205, 205);border_radius:5px;}	
+.exercifiant img:not([src*="../commun/img"]){}
+.anm a {float:none;}
+
+
+
+
+
+
+
+
+/********************************* Clic sur  image */
+#pleinecran{display:none;}
+	body #pleinecran.actif{z-index:40;
+				display:block;
+				position:fixed;
+				top:0px;
+				left:0px;
+				width: 100%;
+				min-height:600px;
+				height: 100%;	
+				overflow:scroll;
+				background:rgba(0,0,0,0.8);
+					}
+					
+	#pleinecran .exit{position:fixed;
+					top:20px;
+					right:20px;	
+					width:50px;
+					z-index:50;
+						}
+#pleinecran #arriere{width: 100%;
+height: 100%;
+z-index: 45;
+position: absolute;display:block;}
+#pleinecran #conteneur{
+z-index: 50;
+width: 90%;
+margin: 20px 5% 20px 20px;position: absolute;display:block;}
+#pleinecran #conteneur img{width:100%;cursor:pointer;background: white;}
+
+

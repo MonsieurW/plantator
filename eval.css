@@ -13,6 +13,11 @@ h1{font-size: 33px;
 
 header{width:100%;}
 
+header #withcode h2 {display: inline-block;width: 48%;
+vertical-align: top;}
+#evalnote header article{display:inline-block;width:28%;}
+
+
 #cour section{display:inline-block;width:28%;margin:30px 1%;box-shadow:0px 0px 5px rgb(3,219,219);height: 150px;vertical-align: top;cursor:pointer;opacity:0.5;}
 #cour section.actif{opacity:1;}
 [data-com]{   cursor:pointer; float: right;
@@ -30,6 +35,15 @@ header h4{text-align:center;}
 .validform,.validcertif{background:#2B2F3A;color:white;text-align:center;padding:5px;margin:5px;border-radius:10px;    margin-top: 35px;}
 
 
+.withcode{
+  text-align: center;	
+border:1px solid white;
+padding: 5px 10px 6px;
+text-decoration: none;
+border-radius: 5px;
+box-shadow: 0 1px 3px #999;
+text-shadow: 0 -1px 1px #C3C3C3;}
+
 #choix section{vertical-align:top;margin:0.5%;}
 #choix #themes{display:none;}
 h2,h3,h4,h5,button{padding:5px;z-index:20;cursor:pointer; margin: 5px;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;opacity:0.7;border:1px solid white;
@@ -41,16 +55,32 @@ box-shadow: 0 1px 3px #999;
 text-shadow: 0 -1px 1px #C3C3C3;
 }
 h2:hover,h3:hover,h5:hover{opacity:1;}
-h3{width:80px;font-size: 25px;display:inline-block;box-shadow:1px 1px 3px;background:#A1F184;
+h3{width:80px;font-size: 22px;display:inline-block;box-shadow:1px 1px 3px;background:#A1F184;
 background:rgb(48, 186, 199);
 	background: -moz-linear-gradient(top, rgb(48, 186, 199) 0%, rgb(197, 244, 249) 100%);
     background: -webkit-linear-gradient(top, rgb(48, 186, 199) 0%, rgb(197, 244, 249) 100%);}
+#evalnote h3{    width: 50%;
+    font-size: 17px;}	
+#evalnote h3.actif{    border: 3px solid rgb(48, 186, 199);}
 h4{font-size: 20px;
 background: rgba(3,219,219,1);
 background: -moz-linear-gradient(top, rgba(3,219,219,1) 0%, rgba(201,255,255,1) 100%);
 background: -webkit-linear-gradient(top, rgba(3,219,219,1) 0%, rgba(201,255,255,1) 100%);text-align:center;}
+#evalnote header h4{float: right;    font-size: 11px;    clear: both;
+    margin: 2px;    overflow: hidden;
+    width: 0px;
+    padding: 0px;
+height: 0px;}
+#evalnote header .choideval:hover h4{width: inherit;padding:  inherit;height: inherit;}
+
+#evalnote h4 span.grise{display:none;}
+#letps{
+    font-size: 20px;
+    font-weight: bold;
+}
+    
 h5{font-size: 12px;box-shadow:1px 1px 3px black;}
-h2{font-size: 20px;text-align: center;}
+h2{font-size: 20px;text-align: center;height: 47px;}
 #themes .theme{width:45%;margin:0.5%;display:inline-block;vertical-align:top;}
 	.theme article{display:none;}
 	 .theme .awsm{float: right;    margin-top: -5px;  font-size: 20px;}
@@ -77,6 +107,8 @@ h2{font-size: 20px;text-align: center;}
 	.inchoisissable{}
 .choisi{border:3px solid #00A5D4;font-weight:bold;}
 
+.info{padding: 30px;}
+
 
 #com{    position: fixed;display:block;
         right: 0px;
@@ -97,15 +129,16 @@ h2{font-size: 20px;text-align: center;}
 .minivisu{color:rgb(0, 253, 251)!important;}
 
 
+
 #progres span{margin:0px 1px 0px 0px;background:white;text-align:center;display: inline-block;
     vertical-align: bottom;  width: 28px;
     border: 1px solid #E4E4E4;
     border-radius: 4px;}
 
 
+#nocode{cursor:pointer;}
 
-
- input{text-align: center; display:block;width:80%;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;border-radius:2px;margin:5px auto;background: rgb(216, 216, 216);border:none;padding: 3px 0px;border-radius: 5px;background: rgb(245, 244, 244); }
+ input{text-align: center; width:80%;-webkit-transition:all 0.2s ease-in-out;-moz-transition: all 0.2s ease-in-out;border-radius:2px;margin:5px auto;background: rgb(216, 216, 216);border:none;padding: 3px 0px;border-radius: 5px;background: rgb(245, 244, 244);font-size: 30px; }
 			input:hover{box-shadow:0px 0px 5px blue;}
 #erreur{display:block;text-align:center;font-weight:bold;}
 #chosen{display:none;text-align:center;font-size:30px;background:rgb(255,0,0);
@@ -116,6 +149,10 @@ background: -webkit-linear-gradient(top, rgb(255, 0, 0) 0%, rgb(255, 236, 236) 1
     bottom: 2px;
     left: 2px;    
     color:#30BAC7;display:none;-webkit-transition:all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;cursor:pointer;z-index:40;cursor:pointer;}
+#evalnote #index{bottom:-22px;}
+
+#evalnote #index #lesthem{width:140px;}	
+	
 #index #lesque,#index #lesthem{background: rgba(0,0,0,0.45);-webkit-transition:all 0.7s ease-in-out;-moz-transition: all 0.7s ease-in-out;}
 
 #lenom{    position: absolute;
@@ -192,9 +229,17 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#12d9d
 #questionnaire{display:none;}
 #questionnaire article{width:700px;margin:0px auto;font-size: 20px;opacity:0.5;-webkit-transition:all 0.3s ease-in-out;-moz-transition: all 0.3s ease-in-out;    padding: 20px;    border-radius: 5px;}
 #questionnaire article.ouvert{opacity:1;}
+.que .awsm:first-child{ border: 1px solid black;
+    border-radius: 20px;
+    padding: 6px;
+    background: rgb(0, 253, 251);
+    margin-right: 5px;}
+   
+
 .querep,.autoeval { vertical-align: middle;    border-radius: 48px;}
 .querep{ padding-top:30px;
 }
+#questionnaire .points{float:right;background:yellow;}
 .autoeval { padding: 0px 80px;}
 
 .lock{float: right;

@@ -1,0 +1,4 @@
+<IfModule mod_php5.c>
+  php_value include_path        ".:/usr/local/lib/php:sauvegarde sql/ZendGdata-1.12.0/library"
+</IfModule>
+

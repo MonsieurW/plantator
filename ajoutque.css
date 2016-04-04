@@ -5,7 +5,7 @@
     left: 40%;
     top: 2%;
     width: 60%;
-    height: 90%;   vertical-align: top;    background: whitesmoke;display:none;}
+    height: 90%;   vertical-align: top;    background: whitesmoke;display:none;    overflow: scroll;}
 	#mains:hover{opacity:0.5;}
 #mains article,#main article{border:1px solid grey;}
 #themes article,#themess article{display:none;}

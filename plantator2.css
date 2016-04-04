@@ -1,0 +1,68 @@
+*{margin:0px;font-family:Raleway;font-size:15px;}
+.awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
+#titres{padding:2px;position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 1px 5px black;z-index:50;}
+	h5{width:40px;display:inline-block;    text-align: center;cursor:pointer;}
+		.hiver{border-bottom: 3px solid blue;}
+		.ptps{border-bottom: 3px solid green;}
+		.ete{border-bottom: 3px solid yellow;}
+		.automn{border-bottom: 3px solid brown;}
+	
+.titres{display:inline-block;} 	
+.titres h5{font-size:14px;width:inherit;padding: 6px;}
+		#onlysemis,#onlyrecolte{display:block;font-size:15px;text-align:center;cursor:pointer;}
+		
+	.actif{    color: white;
+    text-shadow: 0px 0px 10px black;}
+	
+#planches{;padding:20px 80px;}
+	
+#catalogue{position:absolute;left:0px;top:46px;    width:100%;}
+
+article{    padding: 10px 0px 0px 0px;
+    height: 55px;
+    position: absolute;
+    width: 100%;
+    box-shadow: 1px 1px 5px grey;}
+	article div,article h6{height: 30px;display:inline-block; cursor:pointer;}
+	article h6{z-index:30;    position: absolute;
+    left: 3px;font-size: 13px;
+    width: 100px;    }
+	article h6 span{display:block;overflow: hidden;}
+	article h6 span:nth-child(1){height:18px;}
+	.famille{font-size: 11px;}
+	
+	
+	article div{font-family: FontAwesome;position:absolute;font-size:15px;}
+	article span{font-size:15px;}
+	.veg{background: green;z-index:10;height:39px;opacity:0.8;}
+	.recolte{background: yellow;z-index:20;height:39px;opacity:0.8;}
+	
+	.tmin{left:755px;}
+	.semis{left: 679px;}
+	.emplacement{left: 800px;}
+	.caract{  left: 560px;padding:0px 6px;}
+	.multi{left:937px;width: 100px;}
+	
+	.type{    left: 312px;
+    z-index: 40;
+    background: white;
+    padding: 7px 8px 0px 8px;
+    border-radius: 23px;
+    opacity: 0.8;}
+	.racine{left:1014px;}
+	.autre{left:1120px;width:300px}
+	
+	
+	#catalogue span{padding:2px;cursor:pointer;}
+	
+	
+	#comment div{    position: absolute;
+    background: black;
+    color: white;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 51;
+    box-shadow: 1px 1px 7px #000000;}
+	
+	footer{position:fixed; bottom:0px;background:white;font-size:10px;    box-shadow: 1px 1px 5px black;width:100%;text-align:right;}

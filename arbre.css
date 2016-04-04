@@ -1,5 +1,5 @@
 body{font-family: Raleway,Verdana;background-color:white;
-background-image:url(img/toilefond2.jpg);counter-reset: titres;background-position:fixed;  }
+background-image:url(img/toilefond2.jpg);counter-reset: titres;background-attachment:fixed;  }
 *{margin:0px;}
 
 header{margin-bottom:50px;}	
@@ -16,10 +16,17 @@ header{margin-bottom:50px;}
     padding: 5px;	}
 	header article a{display:block;}
 	section{ counter-increment: titre;padding:20px;margin:10px;background: rgba(255, 255, 255, 0.68);box-shadow:1px 1px 5px black;}
-article{display:inline-block;vertical-align:top;width:30%;}
-
+article{display:inline-block;vertical-align:top;    max-width: 60%;}
+section article.conseils{float:right;}
 
 
   h2:before {
     content: "Mission " counter(titre) " : ";   /* Affiche le compteur */
   }
+  
+  .bouton{background:red;color:white;text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 1px;
+    font-size: 12px;
+    text-align: center;}

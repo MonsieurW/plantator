@@ -1,0 +1,35 @@
+<textarea rows="10" cols="150"></textarea>
+<h2 id="visu">Visualiser</h2>
+<section></section>
+
+ <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+	<script>
+	
+	$('#visu').on('click', function(){
+	
+html="INSERT INTO `db471039562`.`plante` (`ID`, `nom`, `prof`, `dligne`, `drang`, `semisint`, `semisabri`, `semisext`, `repiq`, `recolteDeb`, `recolteFin`, `vie`, `soleil`, `pH`, `eau`, `solriche`, `hauteur`, `largeur`, `type`, `racine`, `commentaire`, `multi`, `Tmin`, `famille`, `vivace`,`tpslevee`,`rendement`,`tpsconserv`,`associe`,`antiassocie`,`utilisation`,`conservalimt`) VALUES ";	
+		
+		donnees=escapeHtml($('textarea').val().toLowerCase());
+		
+		donnee=donnees.split("\n");
+		var n=0;
+		for(var i in donnee){
+		html+="(NULL"
+		unit=donnee[i].split("\t");
+			for(var j in unit){
+				
+			html+=(unit[j]!="")?", '"+unit[j]+"'":", ''";			
+			}
+		html+="),";
+		}
+		
+	$('section').html(html);
+});
+
+function escapeHtml(text) { 
+	var map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'":" ", ',':' ',"(":" ", ')':' ', 'é':'e', 'è':'e', 'ç':'c', 'à':'a' }; 
+	return text.replace(/[&<>"',()éèçà]/g, function(m) {
+		return map[m]; }); 
+}
+</script>

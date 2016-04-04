@@ -1,0 +1,142 @@
+body{padding-bottom:100px;}
+*{margin:0px;font-family:Raleway;font-size:13px;}
+.awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
+#logo{width:40px;cursor:pointer;}
+
+header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 1px 5px black;z-index:50;padding:3px 37px;width:2000px;}
+	h5{width:40px;display:inline-block;    text-align: center;cursor:pointer;}
+		.hiver{border-bottom: 3px solid blue;}
+		.ptps{border-bottom: 3px solid green;}
+		.ete{border-bottom: 3px solid yellow;}
+		.automn{border-bottom: 3px solid brown;}
+	.trisemis{color:#3EF53E; text-shadow: 0px 0px 10px black;}
+	.trirec{color:#00C2FF; text-shadow: 0px 0px 10px black;}
+	
+#titres{display:inline-block;font-size:12px;} 	
+#titres h5{font-size:14px;width:inherit;padding: 6px;}
+		#onlysemis,#onlyrecolte{}
+	#aide{cursor:pointer;}	
+	.actif{    color: white;
+    text-shadow: 0px 0px 10px black;}
+	li{ list-style-type: none;font-size:11px;}
+
+	
+#catalogue{position:absolute;left:0px;top:46px;    width:100%;}
+
+article{    padding: 10px 0px 0px 0px;
+    height: 55px;
+    position: absolute;
+    width: 100%;
+    box-shadow: 1px 1px 5px grey;}
+	article div,article h6{height: 30px;display:inline-block; cursor:pointer;
+    }
+	article h6{z-index:30;    position: absolute;
+    left: 3px;font-size: 13px;
+    width: 140px; top:0px;  }
+	article h6 span{display:block;overflow: hidden;text-align:left;}
+	article h6 span:nth-child(1){height:34px;}
+	.famille{font-size: 11px;font-style: italic;}
+	
+	
+	article div{font-family: FontAwesome;position:absolute;font-size:15px;margin: -11px 0px;}
+	article span{font-size:15px;display:block;text-align:center;}
+	.veg{background:#3EF53E;z-index:10;height:20px;top:5px;    border-radius: 15px;margin:0px;/*background-image: url("img/croissanceinv.png");
+    background-repeat: repeat-x;*/}
+	.recolte{background:#00C2FF;z-index:20;height:20px;top:26px;    border-radius: 15px;margin:0px;}
+	
+	.semis{left: 652px;    width: 83px;}
+	.emplacement{left: 735px;
+				height: 66px;
+				width: 70px;
+				background: #9A9A9A;
+				color: white;}
+	.caract{  left: 560px;
+    height: 66px;
+    width: 89px;
+    background: #9A9A9A;
+    color: white;}
+	.compagnonage{left: 840px;}
+
+	.edit{color:#FF00C6;}
+	.type{    left: 312px;margin:0px;
+    z-index: 40;
+    background: white;
+    padding: 7px 8px 0px 8px;
+    border-radius: 23px;
+    opacity: 0.8;}
+	.autre{left:889px;width:300px;}
+	.autre span{text-align:left;}
+	
+	#catalogue span{padding:2px;cursor:pointer;}
+	
+	
+	#comment div{    position: absolute;
+    background: black;
+    color: white;
+    padding: 4px;
+    font-size: 14px;
+    border-radius: 5px;
+    z-index: 51;
+    box-shadow: 1px 1px 7px #000000;}
+	#comment span{display:block;font-size:15px;text-align:center;cursor:pointer;}
+	#comment #close{font-weight: bold;
+			font-size: 20px;
+			right: -12px;
+			top: -14px;
+			text-shadow: 1px 1px 5px black;
+			position: absolute;
+			background: #5D5D5D;
+			border-radius: 20px;
+			padding: 0px 5px;}
+			
+	
+	.modedition div:not(.tiroir){    display: inline-block;
+    height:initial;
+    vertical-align: top;
+    width: 103px;
+    position: static;
+    font-size: 12px;border-radius: 15px;
+    padding: 5px;
+    box-shadow: 1px 1px 5px;margin:5px;text-align:center;font-family:Raleway;border-radius:5px;}
+	.pareil{background:#3BF53B;opacity:0.3;}
+	.differe{background:#ff8300;;opacity:1;}
+	#associe,#antiassocie{ width: 500px;}
+	.modedition{    background: floralwhite;}
+	.dbfixe{margin-top: 50px;}
+	.dbfixe div{background:#F3F3F3;}
+	
+
+	
+	.modedition input,.modedition select{width:95%;font-size:13px;}
+	
+	label{display:block;}
+	input.chk{display:inline;width: 20px;z-index:45;}
+	.tiroir{display:inline-block;position:static;display:none;    text-align: left;  -webkit-column-count: 3;-moz-column-count: 3;   column-count: 3;   height: 300px;width:490px;
+    overflow: scroll;
+  }
+	.deroul{    background:white;
+    color: white;
+    width: 20px;
+    border-radius: 20px;}
+	.deroul.plus{background:black;}
+	.calendardeb,.calendarfin{height: 42px;
+	margin-top: -5px;    border-radius: 5px;}
+	.calendardeb{    margin-left: 80px;
+		border-left: 100px solid rgba(0, 0, 255, 0.1);
+		border-right: 120px solid rgba(0,128,0,0.1);
+		}
+	.calendarfin{ margin-left: 300px; 
+		    border-left: 120px solid rgba(255,255,0,0.1);
+    border-right: 120px solid rgba(165,42,42,0.1);
+		}
+	
+	#envoi{    font-size: 30px;
+    background: #02FF00;
+    border-radius: 15px;}
+	
+	footer{position:fixed; bottom:0px;background:white;font-size:10px;    box-shadow: 1px 1px 5px black;width:100%;text-align:right;    z-index: 50;}
+	footer a{font-size:10px;margin:5px;}
+	
+	
+	#edit article{position:static;height:initial;}
+	#edit .dbfixe .pareil{display:none;}

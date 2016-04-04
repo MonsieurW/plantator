@@ -1,10 +1,21 @@
+/* //penser a faireles boutons  + et - plusgros */
+
+
+
 *{margin:0px;}
 body{background:#FBFBFB;z-index:10;}
 header{top:0px; background:white;}
 #logo{ width: 59px;display:inline-block;vertical-align:top;}
+
+#titres {
+    width: 2000px;
+	    z-index: 20;
+    position: fixed;
+    background: wheat;
+}
 h1{font-size: 35px;display:inline-block;
   text-align: center;vertical-align:top;}
-h2,#save{display:inline-block;padding:5px;box-shadow:1px 1px 3px;cursor:pointer;font-size:70px; margin: 5px;}
+h2,#save{display:inline-block;padding:5px;box-shadow:1px 1px 3px;cursor:pointer;font-size:40px; margin: 5px;}
 h2.actif{background:black;color:white;}
 #save{background:black;color:white;}
 h3{    font-size: 13px;cursor:pointer;
@@ -41,15 +52,27 @@ article{margin:0px 10px 0px 100px;height:62px;    width: 2000px;}
 
 .awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
 
+#resultats.prog .notes{display:none;}
+#resultats.not .notes{display:inline-block;}
+#resultats.prog .progres{display:inline-block;}
+#resultats.not .progres{display:none;}
+#resultats .notes span{width:inherit;font-size:10px;}
+
 #resultats span{margin:0px 1px 0px 0px;background:white;text-align:center;display: inline-block;
     vertical-align: bottom;  width: 19px;
     border: 1px solid #E4E4E4;
     border-radius: 4px;}
+	#resultats .pts {width:inherit;}
+#resultats .pts span{margin:0px 1px 0px 0px;background:white;text-align:center;display: inline;
+    vertical-align: bottom;  width:inherit;
+  }	
+	
+.cache{visibility:hidden;}	
 .groupe{display:inline-block;float:left;    width: 95px;}
 	.groupe button{     
 	margin: 1px 0px 1px 5px;
     font-size: 23px;
-    height: 30px;
+    height: 60px;
     width: 90px;
     display: block;}
 	.pts{display:block;float:left;}
