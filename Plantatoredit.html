@@ -32,6 +32,7 @@
 
 //chger valeur par défaut Tmin
 //caracteristique pour avoir planche parfaite:
+latable='plantetest';latabletemp='plantetemptest';
 if (typeof Object.create != 'function') {
   // Production steps of ECMA-262, Edition 5, 15.2.3.5
   // Reference: http://es5.github.io/#x15.2.3.5
@@ -167,9 +168,9 @@ champs={
 };
 
 plante={};plantetemp={};
-tab={table:'plante2'};
+tab={table:latable};
 $.ajax({
-		url:"http://metaphysik.fr/projet/plantator2.php",
+		url:"p_recupdata.php",
 		data: tab,
 		dataType : 'html',
 		type : 'GET', 
@@ -178,7 +179,7 @@ $.ajax({
 			plante=JSON.parse(data);
 			tab={table:'plantetemp'};
 				$.ajax({
-					url:"http://metaphysik.fr/projet/plantator3.php",
+					url:"p_recuptemp.php",
 					data: tab,
 					dataType : 'html',
 					type : 'GET', 
@@ -218,7 +219,7 @@ $('body').on('click','.pareil', function(){
 
 $('body').on('click','#valid', function(){
 IDsection=$(this).parent().parent('section').data('id');
-infos={ID:IDsection,titres:[]};
+infos={ID:IDsection,titres:[],table:latable};
 IDt=$(this).parent('article').data('idtemp');
 	$(this).parent('article').find('.edition.differe').each(function (){
 		value="";
@@ -254,18 +255,42 @@ IDt=$(this).parent('article').data('idtemp');
 	
 	});
 console.log(infos);
+reqsup=[];
+ID=infos['ID'];
+associes=infos['associe'].split('_');
+for(var i in associes){
+	assos=plante[associes[i]]['associe'].split('_');
+	if($.inArray(assos,ID)==-1){
+		reqsup.push({'ID':associes[i],'associe':plante[associes[i]]['associe']+'_'+ID,titre:'associe'});
+		console.log('rajoute'+plante[ID]['nom']+ID+' à '+plante[associes[i]]['nom']+i)
+	}
+}
+antiassocies=infos['antiassocie'].split('_');//dupliquer boucke précedente
+
+console.log(reqsup);
+/*for(var e in reqsup){
+	$.ajax({
+		url:"p_editdata.php",
+		data: reqsup[e],
+		dataType : 'html',
+		type : 'GET', 
+		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
+		success:function(data){console.log(data);
+		}
+	});	
+}*/
 		$.ajax({
-		url:"http://metaphysik.fr/projet/plantatoreditoriginal.php",
+		url:"p_editdata.php",
 		data: infos,
 		dataType : 'html',
 		type : 'GET', 
 		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 		success:function(data){console.log(data);
 			
-			infos={IDtemp:IDt};
+			infos={IDtemp:IDt,table:latabletemp};
 			//console.log(infos);
 			$.ajax({
-				url:"http://metaphysik.fr/projet/plantatoreff.php",
+				url:"p_efftemp.php",
 				data: infos,
 				dataType : 'html',
 				type : 'GET', 
@@ -280,7 +305,7 @@ console.log(infos);
 });
 $('body').on('click','#insert', function(){
 IDsection=$(this).parent().parent('section').data('id');
-infos={};
+infos={table:latabletemp;};
 IDt=$(this).parent('article').data('idtemp');
 	$(this).parent('article').find('.edition').each(function (){
 		value="";
@@ -317,7 +342,7 @@ IDt=$(this).parent('article').data('idtemp');
 	});
 console.log(infos);
 		$.ajax({
-		url:"http://metaphysik.fr/projet/plantatorinsert.php",
+		url:"p_insertdata.php",
 		data: infos,
 		dataType : 'html',
 		type : 'GET', 
@@ -327,7 +352,7 @@ console.log(infos);
 			infos={IDtemp:IDt};
 			//console.log(infos);
 			$.ajax({
-				url:"http://metaphysik.fr/projet/plantatoreff.php",
+				url:"plantatoreff.php",
 				data: infos,
 				dataType : 'html',
 				type : 'GET', 
@@ -346,7 +371,7 @@ $('body').on('click','#eff', function(){
 	IDsection=$(this).parent().parent('section').data('id');
 			//console.log(infos);
 			$.ajax({
-				url:"http://metaphysik.fr/projet/plantatoreff.php",
+				url:"p_efftemp.php",
 				data: infos,
 				dataType : 'html',
 				type : 'GET', 

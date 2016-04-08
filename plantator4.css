@@ -1,16 +1,27 @@
 body{padding-bottom:100px;}
 *{margin:0px;font-family:Raleway;font-size:13px;}
 .awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
-#logo{width:40px;cursor:pointer;}
+#logo{width:56px;cursor:pointer;      margin-bottom: -10px;
+    margin-left: -25px;}
 
-header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 1px 5px black;z-index:50;padding:3px 37px;width:2000px;}
+header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 1px 5px black;z-index:50;padding:3px 48px;width:2000px;}
 	h5{width:40px;display:inline-block;    text-align: center;cursor:pointer;}
+	h5 .awsm{color:red;}
+	
 		.hiver{border-bottom: 3px solid blue;}
 		.ptps{border-bottom: 3px solid green;}
 		.ete{border-bottom: 3px solid yellow;}
 		.automn{border-bottom: 3px solid brown;}
 	.trisemis{color:#3EF53E; text-shadow: 0px 0px 10px black;}
 	.trirec{color:#00C2FF; text-shadow: 0px 0px 10px black;}
+	#trifiltre{display: inline-block;
+    width: 50px;
+    height: 45px;
+    padding: 2px;
+    margin: 0px;}
+	#trifiltre div{display:block;}
+	
+	
 	
 #titres{display:inline-block;font-size:12px;} 	
 #titres h5{font-size:14px;width:inherit;padding: 6px;}
@@ -21,25 +32,26 @@ header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 
 	li{ list-style-type: none;font-size:11px;}
 
 	
-#catalogue{position:absolute;left:0px;top:46px;    width:100%;}
+#catalogue{position:absolute;left:0px;top:56px;    width:100%;}
 
-article{    padding: 10px 0px 0px 0px;
+#catalogue article{    padding: 10px 0px 0px 0px;
     height: 55px;
-    position: absolute;
+    position: relative;
     width: 100%;
-    box-shadow: 1px 1px 5px grey;}
+    box-shadow: 1px 1px 5px grey;margin:10px 0px;}
 	article div,article h6{height: 30px;display:inline-block; cursor:pointer;
     }
-	article h6{z-index:30;    position: absolute;
-    left: 3px;font-size: 13px;
-    width: 140px; top:0px;  }
+	article h6{z-index:30;  position: absolute; left: 3px;top:0px;
+   font-size: 13px;
+    width: 140px;   }
 	article h6 span{display:block;overflow: hidden;text-align:left;}
 	article h6 span:nth-child(1){height:34px;}
 	.famille{font-size: 11px;font-style: italic;}
 	
 	
-	article div{font-family: FontAwesome;position:absolute;font-size:15px;margin: -11px 0px;}
-	article span{font-size:15px;display:block;text-align:center;}
+#catalogue article div{font-family: FontAwesome;  position: absolute;font-size:15px;margin: -11px 0px;}
+	#catalogue article span{font-size:15px;display:block;text-align:center;}
+	.modedition span{display:inline;}
 	.veg{background:#3EF53E;z-index:10;height:20px;top:5px;    border-radius: 15px;margin:0px;/*background-image: url("img/croissanceinv.png");
     background-repeat: repeat-x;*/}
 	.recolte{background:#00C2FF;z-index:20;height:20px;top:26px;    border-radius: 15px;margin:0px;}
@@ -66,6 +78,13 @@ article{    padding: 10px 0px 0px 0px;
     opacity: 0.8;}
 	.autre{left:889px;width:300px;}
 	.autre span{text-align:left;}
+	.f1,.f6,.f11,.f16,.f21{color:blue;}
+	.f2,.f7,.f12,.f17,.f22{color:#006B77;}
+	.f3,.f8,.f13,.f18,.f23{color:#00772B;}
+	.f4,.f9,.f14,.f19,.f24{color:#6D4405;}
+	.f5,.f10,.f15,.f20,.f25{color:#640075;}
+	
+	
 	
 	#catalogue span{padding:2px;cursor:pointer;}
 	
@@ -112,7 +131,7 @@ article{    padding: 10px 0px 0px 0px;
 	label{display:block;}
 	input.chk{display:inline;width: 20px;z-index:45;}
 	.tiroir{display:inline-block;position:static;display:none;    text-align: left;  -webkit-column-count: 3;-moz-column-count: 3;   column-count: 3;   height: 300px;width:490px;
-    overflow: scroll;
+    overflow: scroll;    padding-top: 8px;
   }
 	.deroul{    background:white;
     color: white;
@@ -140,3 +159,10 @@ article{    padding: 10px 0px 0px 0px;
 	
 	#edit article{position:static;height:initial;}
 	#edit .dbfixe .pareil{display:none;}
+	
+	label:hover{opacity:0.5;}
+	
+	.exergue{background:orange;}
+	.recap{display:block;}
+	
+	/*nomlatin,moistaille*/
