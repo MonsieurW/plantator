@@ -16,10 +16,7 @@
 </head> 
 
 <body id="edit">
-<header>
-	<a href="plantator4.html"><img src="img/images.png" id="logo" alt="logo du plantator"></a>
-	
-</header>
+<img src="img/images.png" id="logo" alt="logo du plantator">
 <section id="comment"></section>
 <section id="planches">
 	
@@ -28,6 +25,7 @@
 </section>
 <footer>Mis en puissance par <a href="metaphysik.fr">Metaphysik</a> Tu veux <a href="https://docs.google.com/spreadsheets/d/16lEHNGDrBh-YhYjX1_25CwJuf_Qkn7bueKuizrN7Cag/edit#gid=1960947943">voir les données ou les compléter?</a>  </footer>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="object.js" type="text/javascript"></script>
 <script>
 
 //chger valeur par défaut Tmin
@@ -78,94 +76,10 @@ if (typeof Object.create != 'function') {
 }
 lg=40;keysSorted='';//largeur d'un mois
 
-pictos={
-	eau:{
-		img:'&#xf043;'
-	},
-	edition:'&#xf044;',
-	hauteur:{
-		img:'&#xf07d;'
-	},
-	largeur:{
-		img:'&#xf07e;'
-	},
-	pH:{
-		couleur:["",'red','green','blue'],
-		title:["",'pH acide','pH neutre','pH basique']
-	},
-	profondeur:{
-		img:'&#xf175;'
-	},
-	racine:{
-		nom:["",'pivotante','traçante','fasciculée'],
-		img:["",'I','L','X']
-	},
-	eau:{
-		img:'&#xf1b3;',
-		couleur:["",'#FFE200','brown','#D00404'],
-		title:["",'sableux/léger','équilibré','argileux/lourd']
-	},
-	soleil:{
-		img:["",'&#xf185;','&#xf185;/&#xf0c2;','&#xf0c2;'],
-		title:["",'ensoleillé','mi-ombre','ombre']
-	},
-	solriche:{
-		title:["",'Besoins en nutriments faibles','Besoins en nutriments moyens','Besoins en nutriments élevés'],
-		img:['','&#xf006;','&#xf123;','&#xf005;']
-		
-	},
-	type:{
-		feuille:'&#xf06c;',
-		fruit:'&#xf094;',
-		racine:'&radic;',
-		fleur:'&#xf1e9;'
-	},
-	vivace:{
-		img:'&#xf0e2;'		
-	}
-};
-//froid<span class="awsm">&#xf069;</span>
-
-criteretri={
-	'caract':{'vivace':'caractère vivace','famille':'famille','hauteur':'hauteur'},
-	'emplacement':{'soleil':'ensoleillement','pH':'pH','solriche':'fertilité du sol','eau':'composition du sol'}
-}
-
-champs={
-	nom:{descr:'Nom',type:'text',clr:'white',img:''},
-	famille: {descr:'famille',type:'text',clr:'white',img:'' } ,
-	 semisint: {descr:'Mois de semis en intérieur',type:'mois',clr:'#3EF53E',img:''} ,
-	 semisabri: {descr:'Mois de semis sous abri' ,type:'mois',clr:'#3EF53E',img:''}, 
-	 semisext: {descr:'Mois de semis en extérieur',type:'mois',clr:'#3EF53E',img:''} ,
-	 recolteDeb: {descr:'Mois de début de la récolte',type:'mois',clr:'#00C2FF',img:'' } ,
-	 recolteFin: {descr:'Mois de fin de la récolte' ,type:'mois',clr:'#00C2FF',img:''  },
-	 soleil: {descr:'Ombre nécessaire',type:'ch3',clr:'#E8ADAD',img:'&#xf185;/&#xf0c2;'  } ,
-	 pH: {descr:'Acidité nécessaire?',type:'ch3',clr:'#E8ADAD',img:'pH '   } ,
-	 eau: {descr:'Sol lourd? (pas du tout= sol léger)',type:'ch3',clr:'#E8ADAD',img:'&#xf1b3;'   } ,
-	 solriche: {descr:'Besoins en nutriments de la plante' ,type:'ch3',clr:'#E8ADAD',img:'&#xf123;'   },
-	 vie: {descr:'Durée de vie de la plante en années',type:'nb' ,clr:'#FFA500',img:''  },
-	 hauteur: {descr:'Hauteur de la plante(cm)',type: 'cm',clr:'#FFA500',img:'&#xf07d;'  } ,
-	 largeur: {descr:'largeur de la plante(cm)',type:'cm',clr:'#FFA500',img:'&#xf07e;'   },
-	 racine: {descr:'Type de racine',type:'racine',clr:'#FFA500',img:''   } ,
-	  rendement: {descr:'Nombre de kg/m² lors de la récolte',type:'nb',clr:'#FFA500',img:''   } ,
-	 multi: {descr:'Méthode de multiplication',type:'text',clr:'#FFA500',img:''   } ,
-	 Tmin: {descr:'Température minimum',type:'nb',clr:'#FFA500',img:''   } ,
-	 vivace: {descr:'Caractère vivace?',type:'bool',clr:'#FFA500',img:'&#xf0e2'   } ,
-	 tpslevee: {descr:'Nombre de jours de la graine à la plantule',type:'nb',clr:'#D8D5D5',img:'' } ,
-	  prof:{descr:'profondeur du semis(cm)',type:'cm',clr:'#D8D5D5',img:'&#xf175;'} ,
-	 dligne: {descr:'espacement entre chaque ligne(cm)',type:'cm',clr:'#D8D5D5',img:'' } ,
-	 drang: {descr:'espacement dans le rang(cm)',type:'cm',clr:'#D8D5D5',img:''} , 
-	 repiq: {descr:'Mois de repiquage',type:'mois',clr:'#D8D5D5',img:''} ,
-	
-	 tpsconserv: {descr:'Durée de conservation des semences (années)',type:'nb',clr:'#D8D5D5',img:'' } ,
-	 utilisation: {descr:'Autres utilisation de la plante',type:'text',clr:'#54CEAD',img:'' } ,
-	 commentaire: {descr:'Commentaire',type:'text',clr:'#54CEAD',img:'' } ,
-	 conservalimt: {descr:"Durée de conservation de l'aliment(en jours)",type:'nb',clr:'#54CEAD',img:'' },
-	 // mail: {descr:"Adresse mail accusé de réception désiré",type:'text' },
-	  type: {descr:'partie comestible de la plante',type:'typlant',clr:'#FFA500',img:''},
-	 associe: {descr:'plantes associées',type:'plantes',clr:'#E8ADAD',img:'&#xf164;'  } ,
-	 antiassocie: {descr:'association néfaste',type:'plantes',clr:'#E8ADAD',img:'&#xf165;'  } 
-};
+$('#logo').on('click', function(){
+location.reload();
+//rafraichir page
+});	
 
 plante={};plantetemp={};
 tab={table:latable};
@@ -177,7 +91,7 @@ $.ajax({
 		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 		success:function(data){//console.log(data);
 			plante=JSON.parse(data);
-			tab={table:'plantetemp'};
+			tab={table:latabletemp};
 				$.ajax({
 					url:"p_recuptemp.php",
 					data: tab,
@@ -192,23 +106,6 @@ $.ajax({
 		}
 	});	
 
-$('#logo').on('click', function(){
-	for(var j in plante){
-				plante[j]['visible']=1;
-			}
-	plantedsplanche();
-	$('#mois h5').removeClass('trisemis').removeClass('trirec');
-	$('body').removeClass('actif');
-});	
-	
-
-	
-
-
-mois={0:'Choisir',1:"Janvier",2:"Février", 3:"Mars",4:"Avril",5:"Mai",6:"Juin",7:"Juillet",8:"Août",9:"Septembre",10:"Octobre",11:"Novembre",12:"Décembre"};
-ch3={0:'Choisir',1:'Peu',2:'Moyen',3:'Beaucoup'};
-bool={0:'Non',1:'Oui'};
-typlant={'feuille':'feuille','fruit':'fruit','fleur':'fleur','racine':'racine'};
 
 $('body').on('click','.deroul', function(){
 	$(this).toggleClass('plus').next('.tiroir').slideToggle();
@@ -218,56 +115,33 @@ $('body').on('click','.pareil', function(){
 });
 
 $('body').on('click','#valid', function(){
-IDsection=$(this).parent().parent('section').data('id');
+$section=$(this).parent('section');
+IDsection=$section.data('id');
 infos={ID:IDsection,titres:[],table:latable};
-IDt=$(this).parent('article').data('idtemp');
-	$(this).parent('article').find('.edition.differe').each(function (){
-		value="";
-		key=$(this).attr('id');infos['titres'].push(key);//console.log($(this).data('typchp'));
-		switch($(this).data('typchp')){
-			case 'mois':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'ch3':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'bool':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'typlant':
-				$(this).find('input:checked').each(function(index){
-				value+=$(this).attr('value')+'_';
-				});
-			break;
-			case 'racine':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'plantes':
-				$(this).find('input:checked').each(function(index){
-				value+=$(this).attr('value')+'_';
-				});
-			break;
-			default:
-			value=$(this).find('input').val();
-			break;
-		}
-	infos[key]=value;
+IDt=$section.data('idtemp');
+	$section.find('.dbtemp').find('.differe').each(function (){
+		key=$(this).attr('id');
+		value=recup_donnees($(this),champsdb[$(this).attr('id')]['type']);
+		infos[key]=value;
+		infos['titres'].push(key);
 	
 	});
 console.log(infos);
-reqsup=[];
+reqsup={'table':latable};
 ID=infos['ID'];
-associes=infos['associe'].split('_');
-for(var i in associes){
-	assos=plante[associes[i]]['associe'].split('_');
-	if($.inArray(assos,ID)==-1){
-		reqsup.push({'ID':associes[i],'associe':plante[associes[i]]['associe']+'_'+ID,titre:'associe'});
-		console.log('rajoute'+plante[ID]['nom']+ID+' à '+plante[associes[i]]['nom']+i)
-	}
+if($.inArray('associe',infos.titres)!=-1){	
+	reqsup+=requete_compagnons(ID,infos['associe'],'associe');
 }
-antiassocies=infos['antiassocie'].split('_');//dupliquer boucke précedente
+if($.inArray('antiassocie',infos.titres)!=-1){	
+	reqsup+=requete_compagnons(ID,infos['antiassocie'],'antiassocie');
+}
 
 console.log(reqsup);
+infos.vivace=(infos.vie>1)?1:infos.vivace;
+
+
+
+
 /*for(var e in reqsup){
 	$.ajax({
 		url:"p_editdata.php",
@@ -303,41 +177,31 @@ console.log(reqsup);
 	});	
 
 });
+
+function requete_compagnons(ID,string,chp){
+	infos=[];
+	split=string.split('_');
+	for(var i in split){
+		if(split[i]!=""){
+			splitautre=plante[split[i]][chp].split('_');//verif que l'ID n'est pas déjà présent
+			if($.inArray(ID,splitautre)!=-1){
+				infossup.push({'ID':split[i],chp:plante[split[i]][chp]+'_'+ID,titre:chp});
+			}	
+		}	
+	}
+	console.log(infossup);
+	return infossup;
+}
+
 $('body').on('click','#insert', function(){
-IDsection=$(this).parent().parent('section').data('id');
-infos={table:latabletemp;};
-IDt=$(this).parent('article').data('idtemp');
-	$(this).parent('article').find('.edition').each(function (){
-		value="";
-		key=$(this).attr('id');//console.log($(this).data('typchp'));
-		switch($(this).data('typchp')){
-			case 'mois':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'ch3':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'bool':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'typlant':
-				$(this).find('input:checked').each(function(index){
-				value+=$(this).attr('value')+'_';
-				});
-			break;
-			case 'racine':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'plantes':
-				$(this).find('input:checked').each(function(index){
-				value+=$(this).attr('value')+'_';
-				});
-			break;
-			default:
-			value=$(this).find('input').val();
-			break;
-		}
-	infos[key]=value;
+$section=$(this).parent('section');
+IDsection=$section.data('id');
+infos={table:latable};
+IDt=$section.data('idtemp');
+	$section.find('.dbtemp').find('.differe').each(function (){
+		key=$(this).attr('id');
+		value=recup_donnees($(this),champsdb[$(this).attr('id')]['type']);
+		infos[key]=value;
 	
 	});
 console.log(infos);
@@ -358,7 +222,7 @@ console.log(infos);
 				type : 'GET', 
 				error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 				success:function(data){console.log(data);
-				$('section#temp'+infos.IDtemp).fadeOut();
+				$('section#id'+infos.IDtemp).fadeOut();
 				}
 			});	
 		}
@@ -367,9 +231,10 @@ console.log(infos);
 });
 
 $('body').on('click','#eff', function(){
-	infos={IDtemp:$(this).parent('article').data('idtemp')};
-	IDsection=$(this).parent().parent('section').data('id');
-			//console.log(infos);
+$section=$(this).parent('section');
+	infos={IDtemp:$section.data('idtemp'),'table':latabletemp};
+	
+			console.log(infos);
 			$.ajax({
 				url:"p_efftemp.php",
 				data: infos,
@@ -377,8 +242,9 @@ $('body').on('click','#eff', function(){
 				type : 'GET', 
 				error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 				success:function(data){console.log(data);
-				$('section#temp'+infos.IDtemp).fadeOut();
-				console.log('section#temp'+infos.IDtemp);
+				console.log('section#id'+infos['IDtemp']);
+				$('section#id'+infos.IDtemp).fadeOut();
+				
 				}
 			});	
 	
@@ -386,92 +252,20 @@ $('body').on('click','#eff', function(){
 });
 
 function plantedsplanche(){
+keysSorted = clefsordonnees('famille');
 $('#catalogue').empty();html="";
 	for(k in plantetemp){
 		ID=plantetemp[k]['ID'];console.log(ID);
-		if(ID!=0)p=plante[ID];
+		if(ID!='0')p=plante[ID];console.log(p);
 		pt=plantetemp[ID];
-		html+='<section data-ID="'+ID+'" id="temp'+plantetemp[k]['IDtemp']+'"><article class="dbfixe modedition">';
+		html+='<section data-ID="'+ID+'" data-idtemp="'+plantetemp[k]['IDtemp']+'" id="id'+plantetemp[k]['IDtemp']+'"><article class="dbfixe modedition">';
+		generer_chps_acqu(p,pt);
+		html+='</article><article class="dbtemp modedition">';
+		generer_chps_acqu(pt,p);
 		
-		if(ID!=0){console.log('boucle1');console.log(p);
-		for(var c in champs){
-		if(ID!=0)diff=(p[c]==pt[c])?"pareil":"differe";
-			html+='<div id="'+c+'" class="'+diff+'" style="background:'+champs[c]['clr']+'"><span class="awsm">'+champs[c]['img']+'</span>'+champs[c]['descr'];
-			switch(champs[c]['type']){
-				case 'mois':
-					html+='<select name="'+c+'">';
-					for(var m in mois){
-						html+='<option value="'+m+'"';
-						if(p[c]==m)html+=' selected="selected"';	
-						html+='>'+mois[m]+'</option>';
-					}
-					html+='</select>'; 
-				break;
-				
-				case 'ch3':
-				html+='<select name="'+c+'">';
-					for(var i in ch3){
-						html+='<option value="'+i+'"';
-						if(p[c]==i)html+=' selected="selected"';	
-						html+='>'+ch3[i]+'</option>';
-					}
-					html+='</select>'; 
-				break;
-				
-				case 'bool':
-				html+='<select name="'+c+'">';
-					for(var i in bool){
-						html+='<option value="'+i+'"';
-						if(p[c]==i)html+=' selected="selected"';	
-						html+='>'+bool[i]+'</option>';
-					}
-					html+='</select>'; 
-				break;
-				
-				case 'racine':
-				html+='<select name="'+c+'">';
-					for(var i in pictos.racine.nom){
-						html+='<option value="'+i+'"';
-						if(p[c]==i)html+=' selected="selected"';	
-						html+='>'+pictos.racine.nom[i]+'</option>';
-					}
-					html+='</select>'; 
-				break;
-				
-				case 'typlant':
-				typesss=p[c].split('_');
-				for(var i in typlant){
-					html+='</br><input class="chk" type="checkbox" name="'+c+'" value="'+i+'"';
-					if($.inArray(typlant[i],typesss)!=-1)html+=' checked';		
-						html+='>'+i+'';
-					}
-				break;
-				
-				case 'plantes':
-				autresplantes=p[c].split('_');
-				html+='<br><img class="deroul" src="../commun/img/plusspetit.png"><div class="tiroir">';
-					for(var i in plante){
-						html+='<label><input class="chk" type="checkbox" name="'+c+'" value="'+plante[i].ID+'"';
-						if($.inArray(plante[i].ID,autresplantes)!=-1)html+=' checked';	
-						html+='>'+plante[i].nom+'</label>';
-					}
-				html+='</div>';	
-				break;
-				
-				default:
-				html+='<input type="text" name="'+c+'" placeholder="'+champs[c]['descr']+'"';
-				html+='value="'+p[c]+'">';
-				break;
-				
-			}
-			html+='</div>';
-		}
 		html+='</article>';
-		}
 		
-		html+='<article data-IDtemp="'+pt.IDtemp+'" class="modedition">';
-		
-		diff="differe"
+		/*diff="differe"
 		for(var c in champs){
 			if(ID!=0)diff=(p[c]==pt[c])?"pareil":"differe";
 			html+='<div class="edition '+diff+' " id="'+c+'" data-typchp="'+champs[c]['type']+'"style="background:'+champs[c]['clr']+'"><span class="awsm">'+champs[c]['img']+'</span>'+champs[c]['descr'];
@@ -542,7 +336,7 @@ $('#catalogue').empty();html="";
 				
 			}
 			html+='</div>';
-		}
+		}*/
 		html+=(ID!=0)?'<button id="valid">Valider</button>':'<button id="insert">Insérer</button>';
 		html+='<button id="eff">Effacer</button></article></section>';
 		

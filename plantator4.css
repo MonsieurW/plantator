@@ -1,17 +1,26 @@
 body{padding-bottom:100px;}
 *{margin:0px;font-family:Raleway;font-size:13px;}
 .awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
-#logo{width:56px;cursor:pointer;      margin-bottom: -10px;
-    margin-left: -25px;}
+#logo{width:56px;cursor:pointer;}
 
-header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 1px 5px black;z-index:50;padding:3px 48px;width:2000px;}
-	h5{width:40px;display:inline-block;    text-align: center;cursor:pointer;}
-	h5 .awsm{color:red;}
+header{background:white;border-radius:5px;box-shadow:1px 1px 5px black;}
+	header aside{display:inline-block;    vertical-align: top;margin-left:5px;}
+	h3{display:inline-block;}
+	h5{    width: 22px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    background: #EEEEEE;
+    border-radius: 26px;
+    margin-right: 18px;
+    padding: 5px 0px;}
 	
-		.hiver{border-bottom: 3px solid blue;}
-		.ptps{border-bottom: 3px solid green;}
-		.ete{border-bottom: 3px solid yellow;}
-		.automn{border-bottom: 3px solid brown;}
+	h5 .awsm{color:red;}
+
+		.hiver{background: #17B2D7;}
+		.ptps{background: #89C43B;}
+		.ete{background:#FDFE66;}
+		.automn{background: #980231;}
 	.trisemis{color:#3EF53E; text-shadow: 0px 0px 10px black;}
 	.trirec{color:#00C2FF; text-shadow: 0px 0px 10px black;}
 	#trifiltre{display: inline-block;
@@ -21,6 +30,14 @@ header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 
     margin: 0px;}
 	#trifiltre div{display:block;}
 	
+	#tri h3,#filtrer,#filtre div,#filtresactifs span{cursor:pointer;  display: inline-block;
+    padding: 2px;
+    border: 1px solid black;
+    border-radius: 5px;}
+	#tri {width:300px;}
+	#filtre{    width: 500px;}
+	#filtre select{display:block;}
+	#filtresactifs span{background:#EEEEEE;margin:0px 1px;}
 	
 	
 #titres{display:inline-block;font-size:12px;} 	
@@ -32,52 +49,67 @@ header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 
 	li{ list-style-type: none;font-size:11px;}
 
 	
-#catalogue{position:absolute;left:0px;top:56px;    width:100%;}
+#catalogue{}
 
-#catalogue article{    padding: 10px 0px 0px 0px;
-    height: 55px;
+.normal article{   height: 55px;
     position: relative;
-    width: 100%;
+    width: 200%;padding:0px;
     box-shadow: 1px 1px 5px grey;margin:10px 0px;}
-	article div,article h6{height: 30px;display:inline-block; cursor:pointer;
+	article div,article h6{height: 55px;display:inline-block;     vertical-align: top;cursor:pointer;    box-shadow: 1px 1px 5px;
     }
-	article h6{z-index:30;  position: absolute; left: 3px;top:0px;
+	article{padding:50px 0px;height:initial;}
+	article h6{z-index:30;  position:relative;
    font-size: 13px;
     width: 140px;   }
 	article h6 span{display:block;overflow: hidden;text-align:left;}
 	article h6 span:nth-child(1){height:34px;}
 	.famille{font-size: 11px;font-style: italic;}
 	
-	
-#catalogue article div{font-family: FontAwesome;  position: absolute;font-size:15px;margin: -11px 0px;}
-	#catalogue article span{font-size:15px;display:block;text-align:center;}
+article section{display:inline-block;}
+		article .tools{    width:initial;
+    vertical-align: top;}	
+ article div{font-family: FontAwesome;position:relative;width:70px;}
+	.nom{    overflow: hidden;
+    height: 37px;
+	}
+	article .tools div{display:block;height:initial;    margin-bottom: 4px;
+    text-align: center;box-shadow: none;width:initial;}
+	article .lesmois{width:initial;opacity:0.3; margin-left: 9px;box-shadow:none;display:block;}
+	article .calendar{width:500px;}
+	article  span{font-size:15px;display:block;text-align:center;font-family: FontAwesome;}
+		article .calendar span{position:absolute;width:40px;}
+		article .calendar span span{position:absolute;}
+		#catalogue .modedition{width:100%;}
 	.modedition span{display:inline;}
-	.veg{background:#3EF53E;z-index:10;height:20px;top:5px;    border-radius: 15px;margin:0px;/*background-image: url("img/croissanceinv.png");
-    background-repeat: repeat-x;*/}
-	.recolte{background:#00C2FF;z-index:20;height:20px;top:26px;    border-radius: 15px;margin:0px;}
-	
-	.semis{left: 652px;    width: 83px;}
-	.emplacement{left: 735px;
-				height: 66px;
-				width: 70px;
-				background: #9A9A9A;
-				color: white;}
-	.caract{  left: 560px;
-    height: 66px;
-    width: 89px;
-    background: #9A9A9A;
-    color: white;}
-	.compagnonage{left: 840px;}
+	.tools aside{width:150px;text-align:left;}
+	.tools aside .calendar{width:initial;}
+	.commentaire{font-size:10px;}	
+		
 
-	.edit{color:#FF00C6;}
-	.type{    left: 312px;margin:0px;
-    z-index: 40;
+
+.commento{top: 56px;
+    position: absolute;
+    z-index: 45;
     background: white;
-    padding: 7px 8px 0px 8px;
-    border-radius: 23px;
-    opacity: 0.8;}
-	.autre{left:889px;width:300px;}
-	.autre span{text-align:left;}
+    padding: 2px;
+    box-shadow: 3px 3px 10px black;
+    border-radius: 5px;
+   text-align:center;width:150%;}
+	#mois.commento{text-align:left;width:105%;}
+		h3{    text-decoration: underline;}
+	#close{font-weight: bold;    top: 0px;
+    right: 0px;
+			font-size: 20px;
+			right: -12px;
+			top: -14px;
+			text-shadow: 1px 1px 5px black;
+			position: absolute;
+			background: #5D5D5D;
+			border-radius: 20px;
+			padding: 0px 5px;}	
+	
+	.edit{color:#FF00C6;}
+	
 	.f1,.f6,.f11,.f16,.f21{color:blue;}
 	.f2,.f7,.f12,.f17,.f22{color:#006B77;}
 	.f3,.f8,.f13,.f18,.f23{color:#00772B;}
@@ -86,39 +118,22 @@ header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 
 	
 	
 	
-	#catalogue span{padding:2px;cursor:pointer;}
 	
 	
-	#comment div{    position: absolute;
-    background: black;
-    color: white;
-    padding: 4px;
-    font-size: 14px;
-    border-radius: 5px;
-    z-index: 51;
-    box-shadow: 1px 1px 7px #000000;}
-	#comment span{display:block;font-size:15px;text-align:center;cursor:pointer;}
-	#comment #close{font-weight: bold;
-			font-size: 20px;
-			right: -12px;
-			top: -14px;
-			text-shadow: 1px 1px 5px black;
-			position: absolute;
-			background: #5D5D5D;
-			border-radius: 20px;
-			padding: 0px 5px;}
+	
 			
 	
 	.modedition div:not(.tiroir){    display: inline-block;
-    height:initial;
+    height:initial;min-height: 50px;
     vertical-align: top;
     width: 103px;
     position: static;
     font-size: 12px;border-radius: 15px;
     padding: 5px;
     box-shadow: 1px 1px 5px;margin:5px;text-align:center;font-family:Raleway;border-radius:5px;}
+	.dbfixe .pareil{display:none;}
 	.pareil{background:#3BF53B;opacity:0.3;}
-	.differe{background:#ff8300;;opacity:1;}
+	.differe{background:#ff8300;opacity:1;}
 	#associe,#antiassocie{ width: 500px;}
 	.modedition{    background: floralwhite;}
 	.dbfixe{margin-top: 50px;}
@@ -126,9 +141,9 @@ header{position:fixed;top:0px;background:white;border-radius:5px;box-shadow:1px 
 	
 
 	
-	.modedition input,.modedition select{width:95%;font-size:13px;}
+	.modedition input,.modedition select{width:95%;font-size:13px;font-family: FontAwesome;}
 	
-	label{display:block;}
+	label{display:block;font-family:FontAwesome;}
 	input.chk{display:inline;width: 20px;z-index:45;}
 	.tiroir{display:inline-block;position:static;display:none;    text-align: left;  -webkit-column-count: 3;-moz-column-count: 3;   column-count: 3;   height: 300px;width:490px;
     overflow: scroll;    padding-top: 8px;

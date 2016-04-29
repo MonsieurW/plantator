@@ -4,7 +4,7 @@
    <meta http-equiv="Content-Type" content="text/HTML; charset=UTF-8" />
 	<link rel="shortcut icon" href="img/minilogo.png" type="image/x-icon"/> 
 	<title>Plantator v4</title>
-	<meta name="description" content="Organisation potagère open-source, Banque de données colaborative sur les plantes "/>
+	<meta name="description" content="Wiki visuel de plante "/>
 	<meta name="keywords" content="légume, permaculture, plante, jardin,potager,rotation,culture,semis,récolte" />
 	
 	<link rel="stylesheet" title="style_commun" media="screen" type="text/css" href="plantator4.css"/>
@@ -16,29 +16,16 @@
 </head> 
 
 <body>
-<header>
-	<img src="img/images.png" id="logo" alt="logo du plantator">
-	<span id="mois"><h5 class="hiver">J</h5><h5 class="hiver">F</h5><h5>M</h5><h5 class="ptps">A</h5><h5 class="ptps">M</h5><h5>J</h5><h5 class="ete">J</h5><h5 class="ete">A</h5><h5>S</h5><h5 class="automn">O</h5><h5 class="automn">N</h5><h5>D</h5></span>
-	<article id="trifiltre">
-		<div id="filtre"><span class="awsm">&#xf0b0;</span>Filtre<span class="vide"></span></div>
-		<div id="tri"><span class="awsm">&#xf0dd;</span>Tri<span class="vide"></span></div></article>
-	<div id="titres">
-			<li id="vivace">vivace</li>
-			<li id="hauteur">hauteur</li>
-			<li id="soleil">Soleil</li>
-			<li id="solriche">nutriments</li>
-			<li id="associe">compagnonage</li>
-		
-		<span id="aide">Aide</span></div>
+<header><img id="logo" alt="logo du plantator" src="img/images.png">
+	<aside id="tri"><h2>Tri</h2><div></div></aside><aside id="filtre"><h2>Filtre</h2></aside>
 </header>
 <section id="comment"></section>
-<section id="planches">
-	
-		<section id="catalogue">
+<section id="catalogue" class="normal">
 		
 </section>
 <footer>Pour toute suggestion d'amélioration, -><a style='color:cyan' href='http://metaphysik.fr/manuel/projet.php#contact'>Contact</a><a href="https://docs.google.com/spreadsheets/d/16lEHNGDrBh-YhYjX1_25CwJuf_Qkn7bueKuizrN7Cag/edit#gid=1960947943">données sur tableur</a> <a href="http://padlet.com/adressedallan/w54pkq3y9p75">ressources supplémentaires</a></footer>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="object.js" type="text/javascript"></script>
 <script>
 
 //Modifiable par tous, j'actualiserai régulièrement le fichier excel pour que tout un chacun puisse avoir les données. Si vous connaissez des développeur Web motivé pour m'aider, faites moi signe!
@@ -46,6 +33,13 @@
 //http://metaphysik.fr/projet/Plantator4.html
 //jujube,cornouille,cudrane,asimines,azeroles ,akébia,feijoa,satsuma,pin pignon,xanthoceras,noix de macadamia,tilleul,buccia capitata,brae armata,brae edilis,sorbier domestiq,camerger du camchaka,baie de goji
 
+//Arbre fertilisants: fevier d'amerique(Gleditsia triacanthos L) et autres legumineuses(luzerne arborescente,caraganier,baguenaudier,faux indigo(Amorpha fructicosa)) s'associant aux rhyzobiums, Avec frankia :aulnes,myriacée,ericacée,éléagnacée(olivier de bohème+ argousier),
+//Arbre utiles paulownia tomentosa,morus,margousier (neem ou azadirachta indica),
+
+
+//plantes eau comestible:zizania :riz sauvage,sagittaria lattifolia : patate d'eau, chataigne d'eau Eleocharis dulcis,cresson des fontaines(nasturtium officinale)
+
+//souchet comestible
 //sponsoriser une plante
 
 if (typeof Object.create != 'function') {
@@ -91,133 +85,9 @@ if (typeof Object.create != 'function') {
     };
   })();
 }
-lg=40;keysSorted='';//largeur d'un mois
+lgMois=40;keysSorted='';//largeur d'un mois
 
-latable='plantetest';latabletemp='plantetemptest';//plantetest,plantetemptest
-pictos={
-	association:{
-		imgpro:'&#xf164;',
-		imganti:'&#xf165;'
-	},
-	eau:{
-		img:'&#xf043;'
-	},
-	edition:'&#xf044;',
-	hauteur:{
-		img:'&#xf07d;'
-	},
-	largeur:{
-		img:'&#xf07e;'
-	},
-	pH:{
-		couleur:["",'red','green','blue'],
-		title:["",'pH acide','pH neutre','pH basique']
-	},
-	profondeur:{
-		img:'&#xf175;'
-	},
-	racine:{
-		nom:["",'pivotante','traçante','fasciculée'],
-		img:["",'I','L','X']
-	},
-	eau:{
-		img:'&#xf1b3;',
-		couleur:["",'#FF0000','brown','#D00404'],
-		title:["",'sableux/léger','équilibré','argileux/lourd']
-	},
-	soleil:{
-		img:["",'&#xf185;','&#xf185;/&#xf0c2;','&#xf0c2;'],
-		title:["",'ensoleillé','mi-ombre','ombre']
-	},
-	solriche:{
-		title:["",'Besoins en nutriments faibles','Besoins en nutriments moyens','Besoins en nutriments élevés'],
-		img:['','&#xf006;','&#xf123;','&#xf005;']
-		
-	},
-	type:{
-		feuille:'&#xf06c;',
-		fruit:'&#xf094;',
-		racine:'&radic;',
-		fleur:'&#xf1e9;'
-	},
-	vivace:{
-		img:'&#xf0e2;'		
-	}
-};
-//froid<span class="awsm">&#xf069;</span>
-
-titreschoisis=['vivace','hauteur','soleil','solriche','associe']
-
-titres={
-	vie:{desc:'durée de vie',chp:['vie','vivace']},
-	largeur:{desc:'largeur',chp:['largeur']},
-	associe:{desc:'compagnonage',chp:['associe','antiassocie']},
-	solriche:{desc:'Besoins en nutriment',chp:['']},
-	hauteur:{desc:'hauteur',chp:['']},
-	soleil:{desc:'soleil',chp:['']},
-	multi:{desc:'multiplication',chp:['']},
-	semis:{desc:'semis',chp:['']},
-	
-	
-	
-	
-	'largeur','multi':multiplication,'prof':profondeur,'drang':espacement,'eau':sol,Tmin:'température de levée semis'};
-
-criteretri={
-	'caract':{'vivace':'caractère vivace',
-			'famille':'famille',
-			'hauteur':'hauteur'},
-	'emplacement':{'soleil':'ensoleillement',
-					'eau':'composition du sol'},
-	'multi':{'solriche':'fertilité du sol'},
-	'comentaire':{'pH':'pH'}	
-	
-};
-
-champs={
-	nom:{descr:'Nom',type:'text',clr:'white',img:''},
-	famille: {descr:'famille',type:'text',clr:'white',img:'' } ,
-	//nomlatin: {descr:'nom latin',type:'text',clr:'white',img:'' } ,
-	 semisint: {descr:'Mois de semis en intérieur',type:'mois',clr:'#3EF53E',img:''} ,
-	 semisabri: {descr:'Mois de semis sous abri' ,type:'mois',clr:'#3EF53E',img:''}, 
-	 semisext: {descr:'Mois de semis en extérieur',type:'mois',clr:'#3EF53E',img:''} ,
-	 recolteDeb: {descr:'Mois de début de la récolte',type:'mois',clr:'#00C2FF',img:'' } ,
-	 recolteFin: {descr:'Mois de fin de la récolte' ,type:'mois',clr:'#00C2FF',img:''  },
-	 repiq: {descr:'Mois de repiquage',type:'mois',clr:'#D8D5D5',img:''} ,
-	// moistaille: {descr:'Mois de taille',type:'mois',clr:'#D8D5D5',img:''} ,
-	//moisflo: {descr:'Mois de floraison',type:'mois',clr:'#D8D5D5',img:''} ,
-	 soleil: {descr:'Ombre nécessaire',type:'ch3',clr:'#E8ADAD',img:'&#xf185;/&#xf0c2;'  } ,
-	 pH: {descr:'Acidité nécessaire?',type:'ch3',clr:'#E8ADAD',img:'pH '   } ,
-	 eau: {descr:'Sol lourd? (pas du tout= sol léger)',type:'ch3',clr:'#E8ADAD',img:'&#xf1b3;'   } ,
-	 solriche: {descr:'Besoins en nutriments de la plante' ,type:'ch3',clr:'#E8ADAD',img:'&#xf123;'   },
-	 vie: {descr:'Durée de vie de la plante en années',type:'nb' ,clr:'#FFA500',img:''  },
-	 hauteur: {descr:'Hauteur de la plante(cm)',type: 'cm',clr:'#FFA500',img:'&#xf07d;'  } ,
-	 largeur: {descr:'largeur de la plante(cm)',type:'cm',clr:'#FFA500',img:'&#xf07e;'   },
-	 racine: {descr:'Type de racine',type:'racine',clr:'#FFA500',img:''   } ,
-	  rendement: {descr:'Nombre de kg/m² lors de la récolte',type:'nb',clr:'#FFA500',img:''   } ,
-	 multi: {descr:'Méthode de multiplication',type:'multii',clr:'#FFA500',img:''   } ,
-	 Tmin: {descr:'Température minimum de levée',type:'nb',clr:'#FFA500',img:''   } ,
-	 vivace: {descr:'Caractère vivace?',type:'bool',clr:'#FFA500',img:'&#xf0e2'   } ,
-	 tpslevee: {descr:'Nombre de jours de la graine à la plantule',type:'nb',clr:'#D8D5D5',img:'' } ,
-	  prof:{descr:'profondeur du semis(cm)',type:'cm',clr:'#D8D5D5',img:'&#xf175;'} ,
-	 dligne: {descr:'espacement entre chaque ligne(cm)',type:'cm',clr:'#D8D5D5',img:'' } ,
-	 drang: {descr:'espacement dans le rang(cm)',type:'cm',clr:'#D8D5D5',img:''} , 
-	
-	
-	 tpsconserv: {descr:'Durée de conservation des semences (années)',type:'nb',clr:'#D8D5D5',img:'' } ,
-	 utilisation: {descr:'Autres utilisation de la plante',type:'text',clr:'#54CEAD',img:'' } ,
-	// medecine: {descr:'Utilisation médecinale de la plante',type:'medecin',clr:'#54CEAD',img:'' } ,
-	 commentaire: {descr:'Commentaire',type:'text',clr:'#54CEAD',img:'' } ,
-	 conservalimt: {descr:"Durée de conservation de l'aliment(en jours)",type:'nb',clr:'#54CEAD',img:'' },
-	 // mail: {descr:"Adresse mail accusé de réception désiré",type:'text' },
-	  type: {descr:'partie comestible de la plante',type:'typlant',clr:'#FFA500',img:''},
-	 associe: {descr:'plantes associées',type:'plantes',clr:'#E8ADAD',img:'&#xf164;'  } ,
-	 antiassocie: {descr:'association néfaste',type:'plantes',clr:'#E8ADAD',img:'&#xf165;'  } 
-};
-
-nvlentree='<h6><span>Nouvelle plante </span><span class="famille">Inconnue</span></h6><div><span class="awsm edit" id="NULL" style="margin-left: 200px;">'+pictos.edition+'</span></div>';
-
-var plante={};tab={'table':latable};
+tab={'table':latable};
 $.ajax({
 		url:"p_recupdata.php",
 		data: tab,
@@ -228,7 +98,8 @@ $.ajax({
 			plante=JSON.parse(data);//console.log(plante);
 		
 			for(var j in plante){
-				plante[j]['visible']=1;
+				plante[j]['trie']=1;
+				
 			}
 			
 			keysSorted = clefsordonnees('nom');
@@ -238,46 +109,45 @@ $.ajax({
 		}
 	});				
 
-//aide();	
-
 	
 $('#logo').on('click', function(){
-	for(var j in plante){
-				plante[j]['visible']=1;
-			}
-	plantedsplanche();
-	$('#mois h5').removeClass('trisemis').removeClass('trirec');
-	$('body').removeClass('actif');
+location.reload();
+//rafraichir page
 });	
+$('body').on('click','#catalogue.normal .dataz div', function(){
+	$('.commento').remove();
+	laClasse=$(this).attr('class');
+	bloc=titres[laClasse];
+	if(laClasse=="calendar"){
+		html='<aside class="commento" id="mois">';
+		$(this).children('span').each(function (){
+			html+=$(this).attr('title')+'<br/> ';
+		});
+	}
+	else{html='<aside class="commento" ><h3>'+bloc.desc+'</h3>';
+		$(this).find('span').each(function (){
+			html+='<h4>'+$(this).attr('title')+'</h4>';
+		});
+	}
 	
-$('body').on('click','h6', function(){
-	affchbulle($(this).html(),$(this),'nom');
+	html+='<span id="close">X</span></aside>';
+
+	($(this)).append(html);//.toggleClass('vizib');//.slideToggle();
 });
 
-$('body').on('click','#catalogue article div,#catalogue article span', function(){
-	infob=$(this).attr('title');//console.log(infob);
-	if(infob!=undefined)affchbulle(infob,$(this),'def');
-});
-
-$('body').on('click','#aide', function(){
-	aide();
-});
 $('body').on('click','#close', function(){
-	$('#comment').empty();
+console.log('rr');
+$('.commento').fadeOut();//ne marche pas!!!! pourquoi?
+
 });
 
-$('#mois h5').on('click', function(){
-	moischoisi=($('#mois h5').index($(this))+1);
-	contenu='<span id="onlysemis">Semis</span><span id="onlyrecolte">Récolte</span>';
-	affchbulle(contenu,$(this),'titre');
-});
-
+/*
 $('#comment').on('click','#onlysemis', function(){
 	for(var j in plante){
-		if(plante[j].visible){
+		if(plante[j].trie){
 			semis=parseInt( (plante[j].semisext!=0)?plante[j].semisext:plante[j].semisabri );
 			semis=parseInt((semis==0)?plante[j].semisint:semis );//console.log(semis);
-			plante[j].visible=((semis<(moischoisi+1))&&(semis>(moischoisi-2)))?1:0;//console.log(plante.nom+''+plante.visible)	;
+			plante[j].trie=((semis<(moischoisi+1))&&(semis>(moischoisi-2)))?1:0;//console.log(plante.nom+''+plante.trie)	;
 		}
 	}
 plantedsplanche();	
@@ -286,124 +156,110 @@ $('#comment').empty();$('#mois h5').eq(moischoisi-1).removeClass('actif').addCla
 
 $('#comment').on('click','#onlyrecolte', function(){
 	for(var j in plante){
-		if(plante[j].visible){
+		if(plante[j].trie){
 			deb=plante[j].recolteDeb;fin=plante[j].recolteFin;
-			plante[j].visible=(((fin-deb>0)&&(deb<=moischoisi)&&(fin>=moischoisi))||((fin-deb<0)&&((fin>=moischoisi)||(deb<=moischoisi))))?1:0;			
+			plante[j].trie=(((fin-deb>0)&&(deb<=moischoisi)&&(fin>=moischoisi))||((fin-deb<0)&&((fin>=moischoisi)||(deb<=moischoisi))))?1:0;			
 		}
 	}
 	plantedsplanche();	
 $('#comment').empty();$('h5').eq(moischoisi-1).removeClass('actif').addClass('trirec');
 });
 
-$('#titres h5').on('click', function(){
-	contenu='';
-	
-	for(l in  criteretri[$(this).attr('id')]){
-		contenu+='<span data-type="'+$(this).attr('id')+'-'+l+'" class="tri">Tri par '+criteretri[$(this).attr('id')][l]+'</span>';
-	}
-	affchbulle(contenu,$(this),'titre');
-});
+*/
 
-$('body').on('click','.tri', function(){
+affich_crit();
+function affich_crit(){
+	content='';
+	for(var i in criteretri){
+		content+='<h3 id="'+i+'">'+champsdb[i]['expl']+'</h3>';
+	}
+	content+='';
+	$('#tri div').html(content);
 	
-	crit=$(this).data('type').split('-');console.log(crit);
+	content='';
+	for(var i in criterefiltre){
+		content+='<div id="'+i+'"><h3>'+criterefiltre[i]['expl']+'</h3><select>';
+				for(var k in criterefiltre[i]['values']){
+					content+='<option value="'+k+'">'+criterefiltre[i]['values'][k]+'</option>';
+				}
+	content+='</select></div>';
+	}
+	content+='<span id="filtrer">->Filtrer</span><div id="filtresactifs"></div>';
+	$('#filtre').append(content);
+}
+
+$('body').on('click','#tri h3', function(){
+$('#tri h3').removeClass('actif');
+	var Champ=$(this).addClass('actif').attr('id');
+	console.log(champsdb[Champ]['type']);
+	keysSorted =(champsdb[Champ]['type']=='text')?clefsordonnees(Champ):clefsordonneesnbr(Champ);
 	
-	if(crit[1]=='famille')keysSorted=clefsordonnees(crit[1]);
-	else keysSorted=clefsordonneesnbr(crit[1]);
-		
-	$('#comment').empty();
-	affchbulle(criteretri[crit[0]][crit[1]],$('#'+crit[0]),'titre');
 	plantedsplanche();
 });
+Arrfiltre={};
+$('body').on('click','#filtre select', function(){
+	$(this).parent('div').addClass('actif');
+});
+$('body').on('click','#filtrer', function(){
+	$('#filtre').find('.actif option:selected').each(function (){
+		Arrfiltre[$(this).parent().parent('div').attr('id')]=$(this).attr('value');console.log($(this).html());
+	});
+	//console.log(Arrfiltre);
+	plantedsplanche();
+	$('#filtre div').removeClass('actif');
+});
+$('body').on('click','.infoplus span', function(){
+	$('.commento').remove();
+	console.log('rrr');
+	html='<aside class="commento" >';
+	for(var t in titres){
+		html+='<label class="'+t+'"><input class="chk" type="checkbox" name="'+t+'" style="border-bottom:1px solid '+titres[t]['colorbox']+'"'; 
+		html+=($.inArray(t,titreschoisis)!=-1)?'checked':'';
+		html+='>'+titres[t]['desc']+'</label>';
+	} 
+	html+='<button id="afficher">Afficher</span><span id="close">X</span></aside>';
+
+	($(this)).parent('div').append(html);
+
+});
+$('body').on('click','#afficher', function(){
+	titreschoisis=[];
+	$('.commento').find('input:checked').each(function(index){
+		titreschoisis.push($(this).attr('name'));
+	});
+	plantedsplanche()
+});
+
 
 compagnonage=0;
-$('body').on('click','.associe', function(){
-$article=$(this).parent().parent('article');console.log($article);
-
-	if($article.is('.exergue')){
-		$article.removeClass('exergue');$(this).removeClass('actif');
-		$('#catalogue article').each(function (){
-			$(this).show();
-		});
-		compagnonage=0;
-	}
-	else{if(compagnonage==1){
-			$('#'+IDcomp).removeClass('exergue');
-			console.log('#'+IDcomp);
-			}
-		IDcomp=$article.addClass('exergue').data('id');
-		var associes=plante[IDcomp]['associe'].split('_');
-		associes.push(IDcomp+'');
-		//console.log(associes);
-		$('#catalogue article').each(function (){
-			//console.log(parseInt($(this).data('id')));
-			if($.inArray($(this).data('id')+'',associes)!=-1){
-				$(this).show();	
-				}
-			else{ $(this).hide();}
-		});
-	compagnonage=1;	
-	}
-	console.log(compagnonage);
+$('body').on('click','.normal .associe', function(){
+	var Champ='associe';
+	var ID=$(this).parent().parent().parent('article').attr('id');
+	affich_compagnon(ID,Champ);
 });
-$('body').on('click','.antiassocie', function(){
-$article=$(this).parent().parent('article');console.log($article);
-
-	if($article.is('.exergue')){
-		$article.removeClass('exergue');$(this).removeClass('actif');
-		$('#catalogue article').each(function (){
-			$(this).show();
-		});
-		compagnonage=0;
-	}
-	else{if(compagnonage==1){
-			$('#'+IDcomp).removeClass('exergue');
-			//console.log('#'+IDcomp);
-			}
-		IDcomp=$article.addClass('exergue').data('id');
-		var associes=plante[IDcomp]['antiassocie'].split('_');
-		associes.push(IDcomp+'');
-		//console.log(associes);
-		$('#catalogue article').each(function (){
-			//console.log(parseInt($(this).data('id')));
-			if($.inArray($(this).data('id')+'',associes)!=-1){
-				$(this).show();	
-				}
-			else{ $(this).hide();}
-		});
-	compagnonage=1;	
-	}
-	//console.log(compagnonage);
+$('body').on('click','.normal .antiassocie', function(){
+	var Champ='antiassocie';
+	var ID=$(this).parent().parent().parent('article').attr('id');
+	affich_compagnon(ID,Champ);
 });
 
-function aide(){
-contenu="<h1>Bienvenue sur le plantator!</h1>Tu peux obtenir des informations en cliquant sur ce que tu ne comprends pas.<br/>Dans le plantator, tout est open-source et libre de droit! Si tu es motivé pour aider <a style='color:cyan' href='http://padlet.com/adressedallan/w54pkq3y9p75'>viens voir par là</a> ou <a href='http://padlet.com/adressedallan/mrgogmsycyur'>t'exprimer par là</a> <br/>Tu peux compléter les infos manquantes grâce au bouton <span class='awsm edit' style='display:inline'>'"+pictos.edition+"'</span> pour faire plaisir aux suivants! Pour la recherche d'un nom particulier tape Control+F (sous Windows) ou Cmd+F (sous Mac)";
-affchbulle(contenu,$('#logo'),'titre')
+function affich_compagnon(ID,Champ){
+	compagnon=plante[ID][Champ].split('_');
+	Arrfiltre['ID']=[ID];
+	for(var IDautre in compagnon){
+			if(compagnon[IDautre]!="")Arrfiltre['ID'].push(compagnon[IDautre]);
+		}
+		console.log(Arrfiltre);
+		plantedsplanche();
 
+	$('#filtresactifs').append('<span>'+champsdb[Champ]['expl']+plante[ID]['nom']+'</span>');
+	$('#'+ID).addClass('exergue');
 }
 
-function affchbulle(contenu,obj,type){
-	$('.actif').removeClass('actif');
-	obj.addClass('actif');
-	x=obj.offset().left;
-	if(type=='titre'){
-	content='<div style="left:'+x+'px;top:59px;position:fixed">'+contenu+'<span id="close">X</span></div>';
-	}
-	else{
-	y=obj.offset().top;//console.log(x+','+y);
-	content='<div style="left:'+x+'px;top:'+(y+40)+'px">'+contenu
-	+'<span id="close">X</span></div>';}
-	$('#comment').html(content);
-}
-	
 
-mois={0:'Choisir',1:"Janvier",2:"Février", 3:"Mars",4:"Avril",5:"Mai",6:"Juin",7:"Juillet",8:"Août",9:"Septembre",10:"Octobre",11:"Novembre",12:"Décembre"};
-ch3={0:'Choisir',1:'Pas du tout',2:'Moyen',3:'Beaucoup'};
-bool={0:'Non',1:'Oui'};
-multii={1:'bouture',2:'division',3:'marcottage',4:'rejet',5:'semis',6:'greffe'};
-typlant={'feuille':'feuille','fruit':'fruit','fleur':'fleur','racine':'racine'};
-medecine={};
 $('body').on('click','.edit', function(){
+	
+	$('#catalogue').removeClass('normal');
 	if($(this).attr('ID')=='NULL'){
 		for(var j in plante['1']){
 			p[j]="";
@@ -412,104 +268,13 @@ $('body').on('click','.edit', function(){
 	else p=plante[$(this).attr('id')];
 	
 		keysSorted = clefsordonnees('famille');
+	html='<article id="'+$(this).attr('id')+'" class="modedition">';
+	generer_chps_acqu(p,0);
+
+	html+='<button id="envoi">Envoyer</button></article>';
+	//console.log(html);
+	$('#catalogue').empty().append(html);
 	
-	html="";console.log("ble");
-	for(var c in champs){
-		html+='<div class="'+champs[c]['type']+'" style="background:'+champs[c]['clr']+'" id="'+c+'"><span class="awsm">'+champs[c]['img']+'</span>'+champs[c]['descr'];
-		switch(champs[c]['type']){
-			case 'mois':
-				html+='<select name="'+c+'">';
-				for(var m in mois){
-					html+='<option value="'+m+'"';
-					if(p[c]==m)html+=' selected="selected"';	
-					html+='>'+mois[m]+'</option>';
-				}
-				html+='</select>'; 
-			break;
-			
-			case 'ch3':
-			html+='<select name="'+c+'">';
-				for(var i in ch3){
-					html+='<option value="'+i+'"';
-					if(p[c]==i)html+=' selected="selected"';	
-					html+='>'+ch3[i]+'</option>';
-				}
-				html+='</select>'; 
-			break;
-			
-			case 'bool':
-			html+='<select name="'+c+'">';
-				for(var i in bool){
-					html+='<option value="'+i+'"';
-					if(p[c]==i)html+=' selected="selected"';	
-					html+='>'+bool[i]+'</option>';
-				}
-				html+='</select>'; 
-			break;
-			
-			case 'racine':
-			html+='<select name="'+c+'">';
-				for(var i in pictos.racine.nom){
-					html+='<option value="'+i+'"';
-					if(p[c]==i)html+=' selected="selected"';	
-					html+='>'+pictos.racine.nom[i]+'</option>';
-				}
-				html+='</select>'; 
-			break;
-			
-			case 'typlant':
-			typesss=p[c].split('_');
-			for(var i in typlant){
-					html+='</br><input class="chk" type="checkbox" name="'+c+'" value="'+i+'"';
-					if($.inArray(typlant[i],typesss)!=-1)html+=' checked';	
-					html+='>'+i+'';
-				}
-			break;
-			
-			case 'multii':
-			typesss=p[c].split('_');
-			for(var i in multii){
-					html+='<label><input class="chk" type="checkbox" name="'+c+'" value="'+i+'"';
-					if($.inArray(typlant[i],typesss)!=-1)html+=' checked';	
-					html+='>'+multii[i]+'</label>';
-				}
-			break;
-			
-			case 'medecin':
-			med=p[c].split('_');html2="";
-			for(var i in med){
-					html+='<label><input class="chk" type="checkbox" name="'+c+'" value="'+i+'"';
-					if($.inArray(med[i],typesss)!=-1)html+=' checked';html2+=med[i]+', ';	
-					html+='>'+med[i]+'</label>';
-				}
-			html+='<span class="recap">'+html2+'</span>';	
-			break;
-			
-			case 'plantes':
-			autresplantes=p[c].split('_');
-			famille=plante[keysSorted[0]]['famille'].toLowerCase();num_famille=0;html2="";html3="";
-			for(k in keysSorted){
-				if(plante[keysSorted[k]]['famille'].toLowerCase()!=famille){
-					famille=plante[keysSorted[k]]['famille'].toLowerCase();num_famille++;}
-					html2+='<label class="f'+num_famille+'"><input class="chk" type="checkbox" name="'+c+'" value="'+plante[keysSorted[k]].ID+'"';
-					if($.inArray(plante[keysSorted[k]].ID,autresplantes)!=-1)html2+=' checked';	
-					html2+='>'+plante[keysSorted[k]].nom+'</label>';
-					//html3+=plante[keysSorted[k]].nom+', ';
-				}
-			html+='<img class="deroul" src="../commun/img/plusspetit.png"><div class="tiroir">'+html2;
-			html+='</div>';	
-			break;
-			
-			default:
-			html+='<input type="text" name="'+c+'" placeholder="'+champs[c]['descr']+'" value="'+p[c]+'">';
-			break;
-			
-		}
-		html+='</div>';
-	}
-	html+='<button id="envoi">Envoyer</button>';
-	$('#catalogue').empty(),
-	($(this).parent().parent('article').empty().css('height','initial').css('padding-bottom','50px').css('top','80px').addClass('modedition').append(html)).appendTo('#catalogue');
 });
 $('body').on('click','.deroul', function(){
 	$(this).toggleClass('plus').next('.tiroir').slideToggle();
@@ -517,45 +282,15 @@ $('body').on('click','.deroul', function(){
 
 
 $('body').on('click','#envoi', function(){
-infos={ID:$(this).parent('article').data('id'),table:latabletemp};
+infos={ID:$(this).parent('article').attr('id'),table:latabletemp,'titres':['ID']};
 	$(this).parent('article').find('div:not(.tiroir)').each(function (){
 		key=$(this).attr('id');value="";
-		switch($(this).attr('class')){
-			case 'mois':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'ch3':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'bool':
-			value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'typlant':
-				$(this).find('input:checked').each(function(index){
-					value+=$(this).attr('value')+'_';
-				});
-			break;
-			case 'multii':
-				$(this).find('input:checked').each(function(index){
-					value+=$(this).attr('value')+'_';
-				});
-			break;
-			case 'racine':
-				value=$(this).find('select option:selected').attr('value');
-			break;
-			case 'plantes':
-				$(this).find('input:checked').each(function(index){
-				value+=$(this).attr('value')+'_';
-				});
-			break;
-			default:
-			value=$(this).find('input').val();
-			break;
-		}
-		console.log(key+'->'+value);
+		value=recup_donnees($(this),champsdb[$(this).attr('id')]['type']);
+		
+		console.log(key+'->'+value);console.log(value);
 		//value=encodeURIComponent( escape(value));
-		console.log(value);
-		infos[key]=value;
+		
+		infos[key]=value;infos['titres'].push(key);
 		//if(value==undefined||value==""){value="";
 	});
 console.log(infos);
@@ -568,6 +303,7 @@ console.log(infos);
 		success:function(data){console.log(data);
 			//plante=JSON.parse(data);
 			alert('Modification enregistrée,en attente de validation par un modérateur.');
+			$('#catalogue').addClass('normal');
 			plantedsplanche();//console.log(plante);
 		}
 	});		
@@ -575,131 +311,219 @@ console.log(infos);
 });
 
 function plantedsplanche(){
-i=-50;h=80;decalage=80;$('#catalogue').empty();
+$('#catalogue').empty();
+condition="";
 
-	for(k in keysSorted){p=plante[keysSorted[k]];//console.log(p);
-		if(p.visible){
-		i=h+i;
-			//////nom et famille
+	
+
+	for(k in keysSorted){p=plante[keysSorted[k]];//p=plante choisie
+		if(p.trie){
+		for(ch in Arrfiltre){
+			console.log(ch);
+			if(ch=='ID'){
+				p.trie=($.inArray(p['ID'],Arrfiltre[ch])!=-1)?1:0;
+			}
+			else if(criterefiltre[ch]['typ']=='val'){
+				p.trie=(p[ch]==Arrfiltre[ch])?1:0;
+			}	
+			else if(criterefiltre[ch]['typ']=='categorie'){
+				var s=Arrfiltre[ch].split('_');
+				p.trie=((s[0]<p[ch])&&(p[ch]<s[1]))?1:0;
+			}
+			else if(criterefiltre[ch]['typ']=='period'){
+				var fin=parseInt(p[criterefiltre[ch]['fin']]);
+				var deb=parseInt(p[criterefiltre[ch]['deb']]);
+				
+				p.trie=(((fin-deb>0)&&(deb<=Arrfiltre[ch])&&(fin>=Arrfiltre[ch]))||((fin-deb<0)&&((fin>=Arrfiltre[ch])||(deb<=Arrfiltre[ch]))))?1:0;
+			/*Tests
+
+			if((p.trie)&&(fin-deb<0)){console.log(deb+' et '+fin +' pr '+Arrfiltre[ch]);
+				console.log(Arrfiltre[ch]);
+				
+				console.log(fin>=Arrfiltre[ch]);
+				console.log(deb<=Arrfiltre[ch]);
+				}*/
+			}
+		}
+		}
+		if(p.trie){
+			html='<article id="'+p.ID+'"><section class="dataz">';
+			//html+=bloc_nom(p);
+			//html+=bloc_calendrier(p);
 			
-			html='<article id="'+p.ID+'" data-ID="'+p.ID+'"><h6><span>'+ud(p.nom)+' </span><span class="famille">'+ud(p.famille)+'</span></h6>';
+			for(var champ in titreschoisis ){
+				html+=bloc_divers(p,titreschoisis[champ]);
+			}	
+			html+='</section><section class="tools"><div class="sup"><a target="blank" href="https://www.google.fr/search?q='+p.nom+'&tbm=isch" class="awsm" title="Voir des images">&#xf03e;</a></div>';
+			html+='<div class="infoplus awsm" title="Voir plus d\'infos"><span>&#xf06e;<sup>+</sup></span></div><div class="edition"><span class="awsm edit" id="'+p.ID+'" title="Rajouter ou modifier des informations sur la plante" >&#xf044;</span></div>';
 			
-			////////croissance
-			semis=(p.semisext!=0)?p.semisext:p.semisabri;
+			
+			html+='</article>';
+			
+			
+			$('#catalogue').append(html);
+		}
+			
+	}	
+	$('#catalogue').append('<article data-ID="NULL">'+nvlentree+'</article>');
+$("html").animate({ scrollTop: 0 }, "slow");
+var txt="";
+for (ch in Arrfiltre){
+	txt+=(ch=='ID')?'':'<span>'+criterefiltre[ch]['expl']+': '+criterefiltre[ch]['values'][Arrfiltre[ch]]+'</span>';
+
+}
+$('#filtresactifs').append(txt);
+Arrfiltre={};
+}
+
+/*function bloc_nom(p){
+				var html='<h6><span>'+ud(p.nom)+'</span><span class="famille">'+ud(p.famille)+'</span></h6>';
+	return html;			
+}
+function bloc_calendrier(p){////////croissance
+	decalage=0;
+		semis=(p.semisext!=0)?p.semisext:p.semisabri;
 			semis=(semis==0)?p.semisint:semis;
 			croissance=	p.recolteDeb - semis;//console.log(p.nom+' '+croissance);
+			var html='<div class="calendar">';
 			if(croissance>0){
-				html+='<div class="veg" style="width:'+croissance*lg+'px;margin-left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></div>';}
+				html+='<span class="veg" style="width:'+croissance*lg+'px;margin-left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></span>';}
 			else if(croissance<0) {
-				html+='<div class="veg" style="width:'+(13-semis)*lg+'px;margin-left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></div>';
-				html+='<div class="veg" style="width:'+(p.recolteDeb-1)*lg+'px;margin-left:'+decalage+'px;" title="période végétative/croissance"></div>';
+				html+='<span class="veg" style="width:'+(13-semis)*lg+'px;margin-left:'+((semis-1)*lg+decalage)+'px;" title="période végétative/croissance"></span>';
+				html+='<span class="veg" style="width:'+(p.recolteDeb-1)*lg+'px;margin-left:'+decalage+'px;" title="période végétative/croissance"></span>';
 				}	
 				
 			////////récolte
 			recolteDuree=p.recolteFin-p.recolteDeb;	
 			if(recolteDuree>0){
-				html+='<div class="recolte" style="width:'+(recolteDuree+1)*lg+'px;left:'+((p.recolteDeb-1)*lg+decalage)+'px;" title="période de récolte"></div>';
+				html+='<span class="recolte" style="width:'+(recolteDuree+1)*lg+'px;left:'+((p.recolteDeb-1)*lg+decalage)+'px;" title="période de récolte"></span>';
 			}
 			else if(recolteDuree<0){
-				html+='<div class="recolte" style="width:'+(12-p.recolteDeb)*lg+'px;left:'+(p.recolteDeb*lg+decalage)+'px;" title="période de récolte"></div>';
-				html+='<div class="recolte" style="width:'+p.recolteFin*lg+'px;left:'+decalage+'px;" title="période de récolte"></div>';
+				html+='<span class="recolte" style="width:'+(12-p.recolteDeb)*lg+'px;left:'+(p.recolteDeb*lg+decalage)+'px;" title="période de récolte"></span>';
+				html+='<span class="recolte" style="width:'+p.recolteFin*lg+'px;left:'+decalage+'px;" title="période de récolte"></span>';
 			}
-			html+='<div class="calendardeb"></div><div class="calendarfin"></div>';
-			///////////caractéristiques
-			
-			
-			for(var champ in titre )
-			html+='<div class=vivace">';
-			htm="";
-			if(p.vie>0)htm='Vit '+p.vie+' an(s)';
-			if(p.vivace==1){
-			html+='<span class="awsm" style="color: #C1D6FF;" title="se comporte comme une vivace">'+htm+pictos.vivace.img+'</span>';
-			}
-			else{if(p.vie>0)html+='<span class="awsm">'+htm+'</span>';}
-			html+='</div><div class=hauteur">';
-			if(p.hauteur>0)html+='<span class="awsm" title="hauteur de la plante">'+pictos.hauteur.img+p.hauteur+'cm</span>';
-			html+='</div><div class=eau">';
-			html+='<span class="awsm" title="emplacement '+pictos.soleil.title[p.soleil]+' ">'+pictos.soleil.img[p.soleil]+'</span>';
 			html+='</div>';
-			
-				////////////////////	
-			html+='<div class="semis">';
-				html+='<span title="méthode de multiplication">'+ud(p.multi)+'</span>';
-				if(p.prof>0)html+='<span class="awsm" title="profondeur de semis">'+pictos.profondeur.img+p.prof+'cm</span><br/>';
-				if(p.drang>0)html+='<span class="awsm" title="espacement dans le rang">'+pictos.largeur.img+p.drang+'cm</span>';
-			///////////////
-			html+='</div><div class="emplacement">';
-				
-				
-				if((p.eau>0)&&(p.eau<4)){html+='<span class="awsm" title="substrat '+pictos.eau.title[p.eau]+'" style="color:'+pictos.eau.couleur[p.eau]+'">'+pictos.eau.img+'</span>';}
-				
-				html+='<span class="tmin" title="Température minimum supportée par la plante">'+ud(p.Tmin)+'°C</span></div><div class="compagnonage">';
-				html+='<span class="awsm" style="color:#00CC00" title="'+pictos.solriche.title[p.solriche]+'">'+pictos.solriche.img[p.solriche]+'</span>';
-				if(p.associe!=0){html+='<span class="awsm associe"  title="plantes compagnes: ';
-				pro=p.associe.split('_');
-				for(var n in pro){
-					html+=(parseInt(pro[n]))?' '+plante[parseInt(pro[n])].nom+',':'';//console.log(plante[parseInt(pro[n])].nom);
-					}
-				html+='">'+pictos.association.imgpro+'</span>';}
-				if(p.antiassocie!=0){
-					html+='<span class="awsm antiassocie" title="association déconseillée: ';
-					anti=p.antiassocie.split('_');
-				for(var n in anti){
-					html+=(parseInt(anti[n]))?' '+plante[parseInt(anti[n])].nom+',':'';}
-				html+='">'+pictos.association.imganti+'</span>';}
-				
-			
-		
-				
-			html+='</div>';
-			
-			///////
-			if(p.type!=''){
-				html+='<div class="awsm type" title="Les ';
-				html2="";
-				types=p.type.split("_");
-				for(var k in types){
-					if(types[k]!=""){
-						html2+=pictos.type[types[k]];
-						html+=types[k]+'s ,';
-					}
-				}
-				html+='sont comestibles">'+html2+'</div>';
-			}
-			
-			////////////autres
-			
-			html+='<div class="autre">';
-			if((p.pH>0)&&(p.pH<4))html+='<span title="'+pictos.pH.title[p.pH]+'" style="color:'+pictos.pH.couleur[p.pH]+'">pH</span>';
-			html+='<span class="racine" title="La racine est '+pictos.racine.nom[p.racine]+'">'+pictos.racine.img[p.racine]+'</span><a target="blank" href="https://www.google.fr/search?q='+p.nom+'&tbm=ischplante''">Voir images</a>';
-			html+='<span>'+ud(p.commentaire)+'</span><span class="awsm edit" id="'+p.ID+'" >'+pictos.edition+'</span></div></article>';
-			
-			
-			$('#catalogue').append(html);
-			
-			
-			
-			//////
-			
-			if(p.largeur>0)html+='<span class="awsm" title="largeur de la plante">'+pictos.largeur.img+p.largeur+'cm</span>';
-			
-			
-		}	
+			//html+='<div class="calendardeb"></div><div class="calendarfin"></div>';
+	return html;		
 	}
-	$('#catalogue').append('<article data-ID="NULL" style="top:'+(i+h)+'px;">'+nvlentree+'</article>');
-$("html").animate({ scrollTop: 0 }, "slow");
-}
+*/
+function bloc_divers(p,bloc){
+			
+			b=titres[bloc];
+			txt='<div class="'+bloc+'" title="'+b.desc+'">';
+			txt+=(bloc=='calendar')?'<section class="lesmois"><h5 class="hiver">J</h5><h5 class="hiver">F</h5><h5>M</h5><h5 class="ptps">A</h5><h5 class="ptps">M</h5><h5>J</h5><h5 class="ete">J</h5><h5 class="ete">A</h5><h5>S</h5><h5 class="automn">O</h5><h5 class="automn">N</h5><h5>D</h5></section>':'';
+			//console.log(b);
+			for(var nomChamp in b['chp']){title="";style="";tx="";nodata=0;
+				ChpChoiz=champsdb[b['chp'][nomChamp]];valP=p[b['chp'][nomChamp]];//console.log(ChpChoiz);
+				//console.log(nomChamp);
+				switch(ChpChoiz.type){
+					case 'bool':
+						title=ChpChoiz[valP];
+						if(valP>0){
+							style='color:cyan';
+							tx=ChpChoiz[valP];
+							}
+					break;
+					case 'nbr':
+						if(valP>0){
+							title=ChpChoiz.expl+valP+ChpChoiz.aps;
+							tx=(valP)?ChpChoiz.avt+valP+ChpChoiz.aps:'';
+						}
+						else nodata=1;
+					break;
+					case 'text':
+						if((valP!="")&&(valP!="undefined")){
+							title=ChpChoiz.expl+valP+ChpChoiz.aps;
+							tx=(valP)?ChpChoiz.avt+valP+ChpChoiz.aps:'';
+						}
+						else nodata=1;
+					break;
+					case 'nbrnul':
+						title=ChpChoiz.expl+valP+ChpChoiz.aps;
+						tx=(valP)?ChpChoiz.avt+valP+ChpChoiz.aps:'';
+					break;
+					case 'plant':
+					//console.log(valP);
+						if(valP!=""){
+						var pts=valP.split('_');
+						tx=ChpChoiz.img;
+						title+=ChpChoiz.expl;
+							for(var g in pts){
+								title+=plante[pts[g]]['nom']+', ';
+							}
+						}
+						else nodata=1;
+					break;
+					case 'picto':
+						if(valP!="undefined"){
+						title=ChpChoiz.expl+ChpChoiz['lgd'][valP];
+						tx=ChpChoiz['img'][valP];
+						}
+						else nodata=1;
+					break;
+					case 'pictomulti':
+						if((valP!='')&&(valP!="undefined")){title=ChpChoiz.expl;
+							vals=valP.split('_');
+							for(var i in vals){
+								poz=ChpChoiz['lgd'].indexOf(vals[i]);
+								title+=' '+vals[i];
+								tx+=ChpChoiz['img'][poz];
+							}
+						
+						}
+						else nodata=1;
+					break;
+					case 'color':
+						if(valP>0){
+							title=ChpChoiz.expl+ChpChoiz['lgd'][valP];
+							tx=ChpChoiz['img'];
+							style='color:'+ChpChoiz['clr'][valP];
+						}
+						else nodata=1;	
+					break;
+					case 'mois':
+						if(valP>0){
+							title=ChpChoiz.expl+mois[valP];
+							tx=ChpChoiz['img'];
+							style='left:'+([valP]-1)*lgMois+'px;top:'+ChpChoiz.top+'px';
+						}
+						else nodata=1;
+					break;
+					case 'periode':
+						if((p[ChpChoiz['debPer']])&&(p[ChpChoiz['finPer']]>0)){
+							valdeb=parseInt(p[ChpChoiz['debPer']]);valfin=parseInt(p[ChpChoiz['finPer']]);
+							title=ChpChoiz.expl+mois[valdeb]+' à '+mois[valfin];
+							
+							var duree=valfin-valdeb;
+							if(duree>0){n=0;
+								while(n<=duree){
+									tx+='<span style="left:'+(n)*lgMois+'px;top:'+ChpChoiz.top+'px">'+ChpChoiz['img']+'</span>';
+									n++;
+								}
+								style='left:'+(valdeb-1)*lgMois+'px;';
+							}
+							else{n=0;////console.log(valdeb+n);
+								while(valdeb+n<=12){
+									tx+='<span style="left:'+(valdeb+n-1)*lgMois+'px;top:'+ChpChoiz.top+'px">'+ChpChoiz['img']+'</span>';
+									n++;
+								}
+								n=0;
+								while(n<valfin){
+									tx+='<span style="left:'+(n)*lgMois+'px;top:'+ChpChoiz.top+'px">'+ChpChoiz['img']+'</span>';
+									n++;
+								}
+							}	
+						}else nodata=1;
+					break;
+				}
+			txt+=(nodata)?'':'<span class="'+b['chp'][nomChamp]+'" title="'+title+'" style="'+style+'">'+tx+'</span>';
+			//console.log(txt);
+			}
+			var html= txt+'</div>';
+			return html;
+			}	
+	
 
-function clefsordonnees(critere){
-	return 	Object.keys(plante).sort(function(a,b){
-		return plante[a][critere].toLowerCase().localeCompare(plante[b][critere].toLowerCase())
-	});
-}
-function clefsordonneesnbr(critere){
-	return 	Object.keys(plante).sort(function(a,b){
-		return plante[a][critere]-plante[b][critere]
-	});
-}
 
 function ud(s){
 	s=(s=='undefined')?'':s;

@@ -3,7 +3,7 @@
 header('Content-Type: text/html; charset=utf-8');
 
 if(isset($_GET['IDtemp'])){
-$sqlf ="DELETE FROM ".$_GET['table']."  WHERE `IDtemp`='".$_GET['IDtemp']."' ;";
+$sqlf ="DELETE FROM `plantetemp` WHERE `IDtemp`='".$_GET['IDtemp']."' ;";
 $sql = $bdd->query($sqlf)or die(print_r($bdd->errorInfo()));
  echo $sqlf;		
 		$sql->closeCursor();

@@ -2,7 +2,8 @@
 
 header('Content-Type: text/html; charset=utf-8');
 $sql ="INSERT INTO `db471039562`.`".$_GET['table']."` (`IDtemp`,";
-$champs=['ID','nom','famille','semisint','semisabri','semisext','recolteDeb','recolteFin','soleil','pH','eau','solriche','vie','hauteur','largeur','racine','commentaire','multi','Tmin','vivace','tpslevee','prof','dligne','drang','repiq','rendement','tpsconserv','utilisation','conservalimt','type','associe','antiassocie'];
+$champs=$_GET['titres'];
+//['ID','nom','famille','semisint','semisabri','semisext','recolteDeb','recolteFin','soleil','pH','eau','solriche','vie','hauteur','largeur','racine','commentaire','multi','Tmin','vivace','tpslevee','prof','dligne','drang','repiq','rendement','tpsconserv','utilisation','conservalimt','type','associe','antiassocie'];
 $sqlvaleur=" VALUES (NULL, ";
 foreach($champs as $k){
 	$sql .='`'.$k.'`,';

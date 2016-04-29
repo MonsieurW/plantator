@@ -1,27 +1,29 @@
 <?php include_once('../manuel/connexionmysql.php');
 
 header('Content-Type: text/html; charset=utf-8');
-$sql ="INSERT INTO `db471039562`.`".$_GET['table']."` (`ID`,";
-$champs=['nom','famille','semisint','semisabri','semisext','recolteDeb','recolteFin','soleil','pH','eau','solriche','vie','hauteur','largeur','racine','commentaire','multi','Tmin','vivace','tpslevee','prof','dligne','drang','repiq','rendement','tpsconserv','utilisation','conservalimt','type','associe','antiassocie'];
-$sqlvaleur=" VALUES (NULL, ";
+$sqlf ="UPDATE `db471039562`.`plante2` SET ";
+$champs=$_GET['titres'];
+//echo $champs;
+
 foreach($champs as $k){
-	$sql .='`'.$k.'`,';
+	$sqlf .='`'.$k.'`';
 	if(isset($_GET[$k])){
-			$sqlvaleur.="'".$_GET[$k]."',";
+			$sqlf.="='".$_GET[$k]."',";
 	}
 }
-$sql1=substr($sql,0,-1);
-$sql2=substr($sqlvaleur,0,-1);
+$sqlf2=substr($sqlf,0,-1);
+$sqlf2 .=" WHERE `ID`='".$_GET['ID']."';";
 //echo $sql2;
-$sqlfinal=$sql1.')'.$sql2.');';
-echo $sqlfinal;
 
-$sql = $bdd->query($sqlfinal)or die(print_r($bdd->errorInfo()));
+echo $sqlf2;
+
+$sql = $bdd->query($sqlf2)or die(print_r($bdd->errorInfo()));
  		
 		$sql->closeCursor();
 	//print_r($pl);
 	
-	 mysql_close();  
+	 mysql_close(); 
+	 
 	 
 	 
 	 
@@ -29,10 +31,6 @@ $sql = $bdd->query($sqlfinal)or die(print_r($bdd->errorInfo()));
 	//INSERT INTO `db471039562`.`plante` (`ID`, `nom`, `prof`, `dligne`, `drang`, `semisint`, `semisabri`, `semisext`, `repiq`, `recolteDeb`, `recolteFin`, `vie`, `soleil`, `pH`, `eau`, `solriche`, `hauteur`, `largeur`, `type`, `racine`, `commentaire`, `multi`, `Tmin`, `famille`, `vivace`) VALUES (NULL, 'Aubergine', '1', '2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''), (NULL, 'hree', '', '', '', '', '', '', '', '', '', '', '', '', '5', '', '', '', '', '', '', '', '', '', '');
 	//<script>plante=<?php echo json_encode($d);	
 	//INSERT INTO `db471039562`.`plante` (`ID`, `nom`, `prof`, `dligne`, `drang`, `semisint`, `semisabri`, `semisext`, `repiq`, `recolteDeb`, `recolteFin`, `vie`, `soleil`, `pH`, `eau`, `solriche`, `hauteur`, `largeur`, `type`, `racine`, `commentaire`, `multi`, `Tmin`, `famille`, `vivace`, `tpslevee`, `rendement`, `tpsconserv`, `associe`, `antiassocie`, `utilisation`, `conservalimt`) VALUES (NULL, 'houblon', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', ''), (NULL, 'hierba buena', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', '');
-	?><script>
-
 	
-	
-	</script>
 		
-		
+		?>
