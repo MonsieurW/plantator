@@ -17,12 +17,12 @@
 
 <body>
 <header><img id="logo" alt="logo du plantator" src="img/images.png">
-	<aside id="tri"><h2>Tri</h2><div></div></aside><aside id="filtre"><h2>Filtre</h2></aside>
+	<aside id="tri"><h2>Tri</h2><section></section></aside><aside id="filtre"><h2>Filtre</h2><section></section></aside>
 </header>
 <section id="comment"></section>
-<section id="catalogue" class="normal">
+<table id="catalogue" class="normal">
 		
-</section>
+</table>
 <footer>Pour toute suggestion d'amélioration, -><a style='color:cyan' href='http://metaphysik.fr/manuel/projet.php#contact'>Contact</a><a href="https://docs.google.com/spreadsheets/d/16lEHNGDrBh-YhYjX1_25CwJuf_Qkn7bueKuizrN7Cag/edit#gid=1960947943">données sur tableur</a> <a href="http://padlet.com/adressedallan/w54pkq3y9p75">ressources supplémentaires</a></footer>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="object.js" type="text/javascript"></script>
@@ -114,7 +114,7 @@ $('#logo').on('click', function(){
 location.reload();
 //rafraichir page
 });	
-$('body').on('click','#catalogue.normal .dataz div', function(){
+$('body').on('click','#catalogue.normal td:not(.tools)', function(){
 	$('.commento').remove();
 	laClasse=$(this).attr('class');
 	bloc=titres[laClasse];
@@ -171,10 +171,10 @@ affich_crit();
 function affich_crit(){
 	content='';
 	for(var i in criteretri){
-		content+='<h3 id="'+i+'">'+champsdb[i]['expl']+'</h3>';
+		content+='<div><h3 id="'+i+'">'+champsdb[i]['expl']+'</h3></div>';
 	}
 	content+='';
-	$('#tri div').html(content);
+	$('#tri section').html(content);
 	
 	content='';
 	for(var i in criterefiltre){
@@ -185,7 +185,7 @@ function affich_crit(){
 	content+='</select></div>';
 	}
 	content+='<span id="filtrer">->Filtrer</span><div id="filtresactifs"></div>';
-	$('#filtre').append(content);
+	$('#filtre section').append(content);
 }
 
 $('body').on('click','#tri h3', function(){
@@ -347,19 +347,18 @@ condition="";
 		}
 		}
 		if(p.trie){
-			html='<article id="'+p.ID+'"><section class="dataz">';
+			html='<tr id="'+p.ID+'">';
 			//html+=bloc_nom(p);
 			//html+=bloc_calendrier(p);
 			
 			for(var champ in titreschoisis ){
 				html+=bloc_divers(p,titreschoisis[champ]);
 			}	
-			html+='</section><section class="tools"><div class="sup"><a target="blank" href="https://www.google.fr/search?q='+p.nom+'&tbm=isch" class="awsm" title="Voir des images">&#xf03e;</a></div>';
-			html+='<div class="infoplus awsm" title="Voir plus d\'infos"><span>&#xf06e;<sup>+</sup></span></div><div class="edition"><span class="awsm edit" id="'+p.ID+'" title="Rajouter ou modifier des informations sur la plante" >&#xf044;</span></div>';
+			html+='<td class="tools"><div class="sup"><a target="blank" href="https://www.google.fr/search?q='+p.nom+'&tbm=isch" class="awsm" title="Voir des images">&#xf03e;</a></div>';
+			html+='<div class="infoplus awsm" title="Voir plus d\'infos"><span>&#xf06e;<sup>+</sup></span></div><div class="edition"><span class="awsm edit" id="'+p.ID+'" title="Rajouter ou modifier des informations sur la plante" >&#xf044;</span></div></td>';
 			
 			
-			html+='</article>';
-			
+			html+='</td>';
 			
 			$('#catalogue').append(html);
 		}
@@ -410,7 +409,7 @@ function bloc_calendrier(p){////////croissance
 function bloc_divers(p,bloc){
 			
 			b=titres[bloc];
-			txt='<div class="'+bloc+'" title="'+b.desc+'">';
+			txt='<td class="'+bloc+'" title="'+b.desc+'">';
 			txt+=(bloc=='calendar')?'<section class="lesmois"><h5 class="hiver">J</h5><h5 class="hiver">F</h5><h5>M</h5><h5 class="ptps">A</h5><h5 class="ptps">M</h5><h5>J</h5><h5 class="ete">J</h5><h5 class="ete">A</h5><h5>S</h5><h5 class="automn">O</h5><h5 class="automn">N</h5><h5>D</h5></section>':'';
 			//console.log(b);
 			for(var nomChamp in b['chp']){title="";style="";tx="";nodata=0;
@@ -445,11 +444,11 @@ function bloc_divers(p,bloc){
 					case 'plant':
 					//console.log(valP);
 						if(valP!=""){
-						var pts=valP.split('_');
+						var pts=valP.split('_');;
 						tx=ChpChoiz.img;
 						title+=ChpChoiz.expl;
-							for(var g in pts){
-								title+=plante[pts[g]]['nom']+', ';
+							for(var g in pts){console.log(pts[g]);
+								title+=(pts[g]!="")?plante[pts[g]]['nom']+', ':'';
 							}
 						}
 						else nodata=1;
@@ -500,7 +499,7 @@ function bloc_divers(p,bloc){
 									tx+='<span style="left:'+(n)*lgMois+'px;top:'+ChpChoiz.top+'px">'+ChpChoiz['img']+'</span>';
 									n++;
 								}
-								style='left:'+(valdeb-1)*lgMois+'px;';
+								style='left:'+(valdeb-1)*lgMois+'px;top: 0px;';
 							}
 							else{n=0;////console.log(valdeb+n);
 								while(valdeb+n<=12){
@@ -516,10 +515,10 @@ function bloc_divers(p,bloc){
 						}else nodata=1;
 					break;
 				}
-			txt+=(nodata)?'':'<span class="'+b['chp'][nomChamp]+'" title="'+title+'" style="'+style+'">'+tx+'</span>';
+			txt+=(nodata)?'':'<div class="'+b['chp'][nomChamp]+'" title="'+title+'" style="'+style+'">'+tx+'</div>';
 			//console.log(txt);
 			}
-			var html= txt+'</div>';
+			var html= txt+'</td>';
 			return html;
 			}	
 	

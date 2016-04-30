@@ -77,13 +77,13 @@ champsdb={
 		'recolteFin':{
 			type:'mois',img:'Rf',expl:'Fin de la récolte '},
 		'RECOLTE':{
-			type:'periode',debPer:'recolteDeb',finPer:'recolteFin',img:'R',expl:'Récolte: ',top:48},
+			type:'periode',debPer:'recolteDeb',finPer:'recolteFin',img:'<img src="img/rcolte.png" alt="récolte">',expl:'Récolte: ',top:30},
 		'rendement':{
 			expl:'Nombre de kg/m² lors de la récolte',type:'nbr',img:'' ,avt:'',aps:'kg/m²'},
 		'repiq':{
 			type:'mois',img:'Rq',expl:'Repiquage ',top:29},
 		'semisext':{
-			type:'mois',img:'Se',expl:'Semis extérieur ',top:10},
+			type:'mois',img:'<img src="img/semiext.png" alt="semis exterieur"/>',expl:'Semis extérieur ',top:10},
 		'semisabri':{
 			type:'mois',img:'Sa',expl:'Semis abri ',top:5},
 		'semisint':{
@@ -123,16 +123,16 @@ champsdb={
 criteretri={
 	'famille':'text',	
 	'hauteur':'nbr',
-	'soleil':'nbr',
 	'eau':'nbr',
-	'pH':'nbr'
+	'pH':'nbr',
+	'soleil':'nbr'
 };
 
 
 criterefiltre={
-	'vivace':{expl:'',
+	'vivace':{expl:'Vivace?',
 		typ:'val',values:{0:'annuelle',1:'vivace'}},
-	'hauteur':{expl:'',
+	'hauteur':{expl:'Hauteur',
 		typ:'categorie',values:{'0_15':'couvre-sol',
 					'15_100':'petite plante',
 					'100_200':'arbuste',
@@ -140,10 +140,10 @@ criterefiltre={
 	'solriche':{expl:"Besoin en nutriments",
 				typ:'val',values:{
 					1:'faible',2:'moyen',3:'élevé'}},
-	'semisext':{expl:"semis exterieur",
+	'semisext':{expl:"Semis exterieur",
 		typ:'val',values:{
 			1:"Janvier",2:"Février", 3:"Mars",4:"Avril",5:"Mai",6:"Juin",7:"Juillet",8:"Août",9:"Septembre",10:"Octobre",11:"Novembre",12:"Décembre"}},	
-	'recolte':{expl:"récolte",
+	'recolte':{expl:"Récolte",
 		typ:'period',deb:'recolteDeb',fin:'recolteFin',values:{1:"Janvier",2:"Février", 3:"Mars",4:"Avril",5:"Mai",6:"Juin",7:"Juillet",8:"Août",9:"Septembre",10:"Octobre",11:"Novembre",12:"Décembre"}}
 };
 
@@ -290,7 +290,7 @@ function recup_donnees($obj,typ){
 			default:
 				value=$obj.find('input').val();
 			break;
-		}console.log(value);
+		}//console.log(value);
 		return value;
 	}
 

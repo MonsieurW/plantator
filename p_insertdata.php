@@ -2,8 +2,8 @@
 
 header('Content-Type: text/html; charset=utf-8');
 $sql ="INSERT INTO `db471039562`.`".$_GET['table']."` (`ID`,";
-$champs=['nom','famille','semisint','semisabri','semisext','recolteDeb','recolteFin','soleil','pH','eau','solriche','vie','hauteur','largeur','racine','commentaire','multi','Tmin','vivace','tpslevee','prof','dligne','drang','repiq','rendement','tpsconserv','utilisation','conservalimt','type','associe','antiassocie'];
 $sqlvaleur=" VALUES (NULL, ";
+$champs=$_GET['titres'];
 foreach($champs as $k){
 	$sql .='`'.$k.'`,';
 	if(isset($_GET[$k])){
@@ -29,10 +29,10 @@ $sql = $bdd->query($sqlfinal)or die(print_r($bdd->errorInfo()));
 	//INSERT INTO `db471039562`.`plante` (`ID`, `nom`, `prof`, `dligne`, `drang`, `semisint`, `semisabri`, `semisext`, `repiq`, `recolteDeb`, `recolteFin`, `vie`, `soleil`, `pH`, `eau`, `solriche`, `hauteur`, `largeur`, `type`, `racine`, `commentaire`, `multi`, `Tmin`, `famille`, `vivace`) VALUES (NULL, 'Aubergine', '1', '2', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''), (NULL, 'hree', '', '', '', '', '', '', '', '', '', '', '', '', '5', '', '', '', '', '', '', '', '', '', '');
 	//<script>plante=<?php echo json_encode($d);	
 	//INSERT INTO `db471039562`.`plante` (`ID`, `nom`, `prof`, `dligne`, `drang`, `semisint`, `semisabri`, `semisext`, `repiq`, `recolteDeb`, `recolteFin`, `vie`, `soleil`, `pH`, `eau`, `solriche`, `hauteur`, `largeur`, `type`, `racine`, `commentaire`, `multi`, `Tmin`, `famille`, `vivace`, `tpslevee`, `rendement`, `tpsconserv`, `associe`, `antiassocie`, `utilisation`, `conservalimt`) VALUES (NULL, 'houblon', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', ''), (NULL, 'hierba buena', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '', '', '', '', '', '');
-	?><script>
+	?>
 
 	
 	
-	</script>
+
 		
 		

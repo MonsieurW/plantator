@@ -1,21 +1,21 @@
 body{padding-bottom:100px;}
 *{margin:0px;font-family:Raleway;font-size:13px;}
 .awsm{font-family: FontAwesome;text-align:center;font-weight: normal;vertical-align: top;}
-#logo{width:56px;cursor:pointer;}
+#logo{width:100px;cursor:pointer;}
 
 header{background:white;border-radius:5px;box-shadow:1px 1px 5px black;}
 	header aside{display:inline-block;    vertical-align: top;margin-left:5px;}
-	h3{display:inline-block;}
-	h5{    width: 22px;
+	
+	h5{     width: 38px;
     display: inline-block;
     text-align: center;
     cursor: pointer;
     background: #EEEEEE;
     border-radius: 26px;
-    margin-right: 18px;
-    padding: 5px 0px;}
+    margin-right: 2px;
+    padding: 5px 0px;
+    font-size: 26px;}
 	
-	h5 .awsm{color:red;}
 
 		.hiver{background: #17B2D7;}
 		.ptps{background: #89C43B;}
@@ -30,20 +30,21 @@ header{background:white;border-radius:5px;box-shadow:1px 1px 5px black;}
     margin: 0px;}
 	#trifiltre div{display:block;}
 	
-	#tri h3,#filtrer,#filtre div,#filtresactifs span{cursor:pointer;  display: inline-block;
-    padding: 2px;
-    border: 1px solid black;
-    border-radius: 5px;}
-	#tri {width:300px;}
-	#filtre{    width: 500px;}
-	#filtre select{display:block;}
+	#filtre,#tri{border: 1px solid black;
+    border-radius: 5px;padding: 2px; }
+	#filtre{ width: 60%;  }
+	#tri{  width: 20%;   }
+	h2{text-align:center; font-size: 18px;    background: #E4E4E4;}
+	
+	h3{display:inline-block; font-size: 16px;cursor:pointer;}
+	 #filtre div,#tri div, #filtrer,#filtresactifs span{cursor:pointer; 
+	display:inline-block;    background: #FFB7E5;border-radius:5px;margin:2px 4px; padding: 5px;
+    text-align: center;}
+	#filtre select{display:block;    width: 100%;}
 	#filtresactifs span{background:#EEEEEE;margin:0px 1px;}
 	
 	
-#titres{display:inline-block;font-size:12px;} 	
-#titres h5{font-size:14px;width:inherit;padding: 6px;}
-		#onlysemis,#onlyrecolte{}
-	#aide{cursor:pointer;}	
+
 	.actif{    color: white;
     text-shadow: 0px 0px 10px black;}
 	li{ list-style-type: none;font-size:11px;}
@@ -51,40 +52,41 @@ header{background:white;border-radius:5px;box-shadow:1px 1px 5px black;}
 	
 #catalogue{}
 
-.normal article{   height: 55px;
+.normal tr{   height: 55px;
     position: relative;
     width: 200%;padding:0px;
-    box-shadow: 1px 1px 5px grey;margin:10px 0px;}
-	article div,article h6{height: 55px;display:inline-block;     vertical-align: top;cursor:pointer;    box-shadow: 1px 1px 5px;
+    box-shadow: 1px 1px 5px grey;margin:10px 0px;display: block;
+}
+	tr td,tr h6{height: 55px;display:inline-block;     vertical-align: top;cursor:pointer;    box-shadow: 1px 1px 5px;
     }
-	article{padding:50px 0px;height:initial;}
-	article h6{z-index:30;  position:relative;
+	tr{padding:50px 0px;height:initial;margin-bottom:10px;}
+	tr h6{z-index:30;  position:relative;
    font-size: 13px;
     width: 140px;   }
-	article h6 span{display:block;overflow: hidden;text-align:left;}
-	article h6 span:nth-child(1){height:34px;}
-	.famille{font-size: 11px;font-style: italic;}
+	tr h6 div{display:block;overflow: hidden;text-align:left;}
+	tr h6 span:nth-child(1){height:34px;}
 	
-article section{display:inline-block;}
-		article .tools{    width:initial;
-    vertical-align: top;}	
- article div{font-family: FontAwesome;position:relative;width:70px;}
-	.nom{    overflow: hidden;
-    height: 37px;
-	}
-	article .tools div{display:block;height:initial;    margin-bottom: 4px;
-    text-align: center;box-shadow: none;width:initial;}
-	article .lesmois{width:initial;opacity:0.3; margin-left: 9px;box-shadow:none;display:block;}
-	article .calendar{width:500px;}
-	article  span{font-size:15px;display:block;text-align:center;font-family: FontAwesome;}
-		article .calendar span{position:absolute;width:40px;}
-		article .calendar span span{position:absolute;}
+	
+
+ td{font-family: FontAwesome;position:relative;width:70px;}
+ .noms{ width: 100px;}
+	.nom{overflow: hidden;
+    height: 41px;
+    font-size: 18px;
+    font-family: Raleway;
+	}.famille{font-size: 11px;font-style: italic;    background: #EFEFEF;}
+	 .tools{width:40px;}
+	tr .lesmois{width:initial;opacity:0.1; margin-left: 9px;box-shadow:none;display:block;}
+	tr .calendar{width:500px;}
+	td  div,td span{font-size:15px;text-align:center;font-family: FontAwesome;}
+		tr .calendar div{position:absolute;width:40px;}
+		tr .calendar span{position:absolute;}
 		#catalogue .modedition{width:100%;}
 	.modedition span{display:inline;}
 	.tools aside{width:150px;text-align:left;}
 	.tools aside .calendar{width:initial;}
 	.commentaire{font-size:10px;}	
-		
+	.edit{cursor:pointer;}	
 
 
 .commento{top: 56px;
@@ -96,7 +98,6 @@ article section{display:inline-block;}
     border-radius: 5px;
    text-align:center;width:150%;}
 	#mois.commento{text-align:left;width:105%;}
-		h3{    text-decoration: underline;}
 	#close{font-weight: bold;    top: 0px;
     right: 0px;
 			font-size: 20px;

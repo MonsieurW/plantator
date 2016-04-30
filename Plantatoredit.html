@@ -20,9 +20,9 @@
 <section id="comment"></section>
 <section id="planches">
 	
-		<section id="catalogue">
+		<table id="catalogue">
 		
-</section>
+</table>
 <footer>Mis en puissance par <a href="metaphysik.fr">Metaphysik</a> Tu veux <a href="https://docs.google.com/spreadsheets/d/16lEHNGDrBh-YhYjX1_25CwJuf_Qkn7bueKuizrN7Cag/edit#gid=1960947943">voir les données ou les compléter?</a>  </footer>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <script src="object.js" type="text/javascript"></script>
@@ -126,33 +126,37 @@ IDt=$section.data('idtemp');
 		infos['titres'].push(key);
 	
 	});
-console.log(infos);
+//console.log(infos);
 reqsup={'table':latable};
-ID=infos['ID'];
+ID=infos['ID'];infossup=[];
 if($.inArray('associe',infos.titres)!=-1){	
-	reqsup+=requete_compagnons(ID,infos['associe'],'associe');
+	requete_compagnons(ID,infos['associe'],'associe');
 }
+console.log(infossup);
 if($.inArray('antiassocie',infos.titres)!=-1){	
-	reqsup+=requete_compagnons(ID,infos['antiassocie'],'antiassocie');
+	requete_compagnons(ID,infos['antiassocie'],'antiassocie');
+
 }
 
-console.log(reqsup);
-infos.vivace=(infos.vie>1)?1:infos.vivace;
+console.log(infossup);
+if((infos.vie>1)||(plante[ID][vie]>1)){
+	infos.vivace=1;
+	infos.titres.push('vivace');
+	
+}
 
 
-
-
-/*for(var e in reqsup){
+for(var req in infossup){
 	$.ajax({
 		url:"p_editdata.php",
-		data: reqsup[e],
+		data: infossup[req],
 		dataType : 'html',
 		type : 'GET', 
 		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 		success:function(data){console.log(data);
 		}
 	});	
-}*/
+}
 		$.ajax({
 		url:"p_editdata.php",
 		data: infos,
@@ -170,7 +174,7 @@ infos.vivace=(infos.vie>1)?1:infos.vivace;
 				type : 'GET', 
 				error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 				success:function(data){console.log(data);
-				$('section#temp'+infos.IDtemp).fadeOut();
+				$('section#id'+infos.IDtemp).fadeOut();
 				}
 			});	
 		}
@@ -178,30 +182,35 @@ infos.vivace=(infos.vie>1)?1:infos.vivace;
 
 });
 
-function requete_compagnons(ID,string,chp){
-	infos=[];
-	split=string.split('_');
+function requete_compagnons(ID,values,chp){
+	console.log(ID+':'+values+chp);
+	split=values.split('_');
 	for(var i in split){
 		if(split[i]!=""){
 			splitautre=plante[split[i]][chp].split('_');//verif que l'ID n'est pas déjà présent
-			if($.inArray(ID,splitautre)!=-1){
-				infossup.push({'ID':split[i],chp:plante[split[i]][chp]+'_'+ID,titre:chp});
-			}	
+			if($.inArray(ID,splitautre)==-1){
+			var val="";
+			for(var j in splitautre){
+				val+=(splitautre[j]!="")?splitautre[j]+'_':'';
+			}
+			val+=ID;
+			infossup.push({'ID':split[i],'titres':[chp],table:latable});
+			infossup[infossup.length-1][chp]=val;
+			}
 		}	
 	}
-	console.log(infossup);
-	return infossup;
 }
 
 $('body').on('click','#insert', function(){
 $section=$(this).parent('section');
-IDsection=$section.data('id');
-infos={table:latable};
+infos={table:latable,'titres':[]};
 IDt=$section.data('idtemp');
-	$section.find('.dbtemp').find('.differe').each(function (){
+	$section.find('.dbfixe').find('.differe').each(function (){
 		key=$(this).attr('id');
-		value=recup_donnees($(this),champsdb[$(this).attr('id')]['type']);
+		infos['titres'].push(key);
+		value=recup_donnees($(this),champsdb[$(this).attr('id')]['type']);console.log(key+' = '+value)
 		infos[key]=value;
+		
 	
 	});
 console.log(infos);
@@ -213,10 +222,10 @@ console.log(infos);
 		error:function(jqHxr,statut,error){console.log('erreur:'+error)},	
 		success:function(data){console.log(data);
 			
-			infos={IDtemp:IDt};
+			infos={IDtemp:IDt,table:latabletemp};
 			//console.log(infos);
 			$.ajax({
-				url:"plantatoreff.php",
+				url:"p_efftemp.php",
 				data: infos,
 				dataType : 'html',
 				type : 'GET', 
@@ -256,13 +265,17 @@ keysSorted = clefsordonnees('famille');
 $('#catalogue').empty();html="";
 	for(k in plantetemp){
 		ID=plantetemp[k]['ID'];console.log(ID);
-		if(ID!='0')p=plante[ID];console.log(p);
+		if(ID!='0')p=plante[ID];//console.log(p);
 		pt=plantetemp[ID];
 		html+='<section data-ID="'+ID+'" data-idtemp="'+plantetemp[k]['IDtemp']+'" id="id'+plantetemp[k]['IDtemp']+'"><article class="dbfixe modedition">';
-		generer_chps_acqu(p,pt);
-		html+='</article><article class="dbtemp modedition">';
-		generer_chps_acqu(pt,p);
-		
+		if(ID=='0'){
+			generer_chps_acqu(pt,0);
+		}
+		else{
+			generer_chps_acqu(p,pt);
+			html+='</article><article class="dbtemp modedition">';
+			generer_chps_acqu(pt,p);
+		}
 		html+='</article>';
 		
 		/*diff="differe"
